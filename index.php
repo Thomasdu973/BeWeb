@@ -1,14 +1,27 @@
-<?php
-require_once ("data/config.php");
-require_once ("template/header.php");
-require_once ("template/menu.php");
-?>
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+	<?php
+	require_once ("data/config.php");
+	require_once ("template/header.php");
+	?>
+
+	<body class="is-preload">
+	
+		<?php require_once ("template/menu.php");?>
+
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
 					<h1>Plan de vol</h1>
-					<p>A responsive business oriented template with a video background<br />
-					designed by <a href="https://templated.co/">TEMPLATED</a> and released under the Creative Commons License.</p>
+					<p>
+						La gestion simplifiée et numérique du carnet de vol.
+					</p>
 				</div>
 				<video autoplay loop muted playsinline src="images/banner.mp4"></video>
 			</section>
@@ -25,7 +38,7 @@ require_once ("template/menu.php");
 							<div class="content">
 								<header>
 									<a href="#" class="icon fa-vcard-o"><span class="label">Icon</span></a>
-									<h3>Feugiat consequat</h3>
+									<h3>Informations sécurisées</h3>
 								</header>
 								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
 							</div>
@@ -33,8 +46,8 @@ require_once ("template/menu.php");
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-files-o"><span class="label">Icon</span></a>
-									<h3>Ante sem integer</h3>
+									<a href="#" class="icon fa-plane"><span class="label">Icon</span></a>
+									<h3>Saisie simplifiée</h3>
 								</header>
 								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
 							</div>
@@ -42,8 +55,8 @@ require_once ("template/menu.php");
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-floppy-o"><span class="label">Icon</span></a>
-									<h3>Ipsum consequat</h3>
+									<a href="#" class="icon fa-cogs"><span class="label">Icon</span></a>
+									<h3>Modifications rapides</h3>
 								</header>
 								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
 							</div>
@@ -52,27 +65,9 @@ require_once ("template/menu.php");
 							<div class="content">
 								<header>
 									<a href="#" class="icon fa-line-chart"><span class="label">Icon</span></a>
-									<h3>Interdum gravida</h3>
+									<h3>Statistiques personnalisées</h3>
 								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-paper-plane-o"><span class="label">Icon</span></a>
-									<h3>Faucibus consequat</h3>
-								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-							</div>
-						</section>
-						<section>
-							<div class="content">
-								<header>
-									<a href="#" class="icon fa-qrcode"><span class="label">Icon</span></a>
-									<h3>Accumsan viverra</h3>
-								</header>
-								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
+								<p>&copy; Plan de vol vous permet d'obtenir des statistiques précises sur les heures de vol éffectuées.</p>
 							</div>
 						</section>
 					</div>
@@ -130,7 +125,7 @@ require_once ("template/menu.php");
 									<div class="image">
 										<img src="images/pic02.jpg" alt="" />
 									</div>
-									<p class="credit">- <strong>Janet Smith</strong> <span>CEO - ABC Inc.</span></p>
+									<p class="credit">- <strong>Janet Smith</strong> <span>Pilote chez Emirates</span></p>
 								</div>
 							</div>
 						</section>
@@ -138,4 +133,6 @@ require_once ("template/menu.php");
 				</div>
 			</section>
 
-<?php require_once ("template/footer.php");?>
+		<?php require_once ("template/footer.php");?>
+	</body>
+</html>

@@ -1,4 +1,4 @@
 <?php
 
-DEFINE("CHEMIN","/beweb");
+DEFINE("CHEMIN","/BeWeb");
 ?>

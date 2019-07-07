@@ -15,12 +15,12 @@
                 </ul>
             </section>
             <section>
-                <h4>Magna sed ipsum</h4>
+                <h4>Contact (GitHub fonctionnel)</h4>
                 <ul class="plain">
                     <li><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
                     <li><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
                     <li><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-                    <li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                    <li><a href="https://github.com/Thomasdu973/BeWeb.git"><i class="icon fa-github">&nbsp;</i>Github</a></li>
                 </ul>
             </section>
         </div>
@@ -36,5 +36,3 @@
 <script src="<?php echo CHEMIN; ?>/assets/js/breakpoints.min.js"></script>
 <script src="<?php echo CHEMIN; ?>/assets/js/util.js"></script>
 <script src="<?php echo CHEMIN; ?>/assets/js/main.js"></script>
-</body>
-</html>
