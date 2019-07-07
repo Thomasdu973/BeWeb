@@ -37,7 +37,7 @@
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-vcard-o"><span class="label">Icon</span></a>
+									<a class="icon fa-vcard-o"><span class="label">Icon</span></a>
 									<h3>Informations sécurisées</h3>
 								</header>
 								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
@@ -46,7 +46,7 @@
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-plane"><span class="label">Icon</span></a>
+									<a class="icon fa-plane"><span class="label">Icon</span></a>
 									<h3>Saisie simplifiée</h3>
 								</header>
 								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
@@ -55,7 +55,7 @@
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-cogs"><span class="label">Icon</span></a>
+									<a class="icon fa-cogs"><span class="label">Icon</span></a>
 									<h3>Modifications rapides</h3>
 								</header>
 								<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
@@ -64,7 +64,7 @@
 						<section>
 							<div class="content">
 								<header>
-									<a href="#" class="icon fa-line-chart"><span class="label">Icon</span></a>
+									<a class="icon fa-line-chart"><span class="label">Icon</span></a>
 									<h3>Statistiques personnalisées</h3>
 								</header>
 								<p>&copy; Plan de vol vous permet d'obtenir des statistiques précises sur les heures de vol éffectuées.</p>
@@ -76,18 +76,59 @@
 
 		<!-- CTA -->
 			<section id="cta" class="wrapper">
-				<div class="inner">
-					<h2>Curabitur ullamcorper ultricies</h2>
-					<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing. Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida.</p>
+			<div class="content">
+					<!-- Form -->
+					<h3>Formulaire d'inscription</h3>
+					<div class="col">
+					<form method="post" action="#">
+						<div class="row gtr-uniform">
+							<div class="col-2 col-lg-2">
+							</div>
+							<div class="col-8 col-12-xsmall">
+								<input type="text" name="nom" id="nom" value="" placeholder="Nom" />
+							</div>
+							<div class="col-2 col-lg-2">
+							</div>
+							<div class="col-2 col-lg-2">
+							</div>
+							<div class="col-8 col-12-xsmall">
+								<input type="text" name="prenom" id="prenom" value="" placeholder="Prenom" />
+							</div>
+							<div class="col-2 col-lg-2">
+							</div>
+							<div class="col-2 col-lg-2">
+							</div>
+							<div class="col-8 col-7-xsmall">
+								<input type="email" name="email" id="email" value="" placeholder="Email" />
+							</div>
+							<div class="col-2 col-lg-2">
+							</div>
+							<div class="col-2 col-lg-2">
+							</div>
+							<div class="col-8 col-7-xsmall">
+								<input type="password" name="mdp" id="mdp" value="" placeholder="Mot de passe" />
+							</div>
+							<div class="col-2 col-lg-2">
+							</div>
+							<div class="col-2 col-lg-2">
+							</div>
+							<!-- Break -->
+							<div class="col-8">
+								<ul class="actions fit">
+									<li><input type="submit" value="Inscription" class="button primary fit" /></li>
+								</ul>
+							</div>
+						</div>
+					</form>
 				</div>
 			</section>
 
-		<!-- Testimonials -->
+		<!-- Témoignages -->
 			<section class="wrapper">
 				<div class="inner">
 					<header class="special">
-						<h2>Faucibus consequat lorem</h2>
-						<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p>
+						<h2>Témoignages</h2>
+						<p>Depuis 10 ans, Plan de Vol vient</p>
 					</header>
 					<div class="testimonials">
 						<section>
