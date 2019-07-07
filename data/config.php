@@ -1,0 +1,4 @@
+<?php
+
+DEFINE("CHEMIN","/beweb");
+?>
