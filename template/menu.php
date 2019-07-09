@@ -27,11 +27,11 @@
             </ul>
         </li>
 
-        <li><a href="<?php echo CHEMIN; ?>/pages/connexion.php">Connexion</a></li>
-
-        <li><a href="<?php echo CHEMIN; ?>/pages/inscription.php">Inscription</a></li>
-        
-
+        <li>Se connecter
+             <ul>
+                <li><a href="<?php echo CHEMIN; ?>/pages/connexion.php">S'inscrire</a></li>
+            </ul>
+        </li>
         <li><a href="<?php echo CHEMIN; ?>/pages/webmaster/webmaster.php">Webmaster</a></li>
 
     </ul>
