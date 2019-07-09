@@ -25,10 +25,10 @@
 					<!-- Form -->
 					<h3>Entrez vos coordonnées</h3>
 					<div class="col">
-					<form method="post" action="#">
+					<form method="post" action="../controller/traitement.php">
 						<div class="row gtr-uniform">
 							<div class="col-8 col-7-xsmall">
-								<input type="text" name="login" id="login" value="" placeholder="Login" />
+								<input type="text" name="login" id="login" value="" placeholder="Nom d'utilisateur" />
 							</div>
 							<div class="col-8 col-7-xsmall">
 								<input type="password" name="mdp" id="mdp" value="" placeholder="Mot de passe" />
@@ -36,7 +36,7 @@
 							<!-- Break -->
 							<div class="col-8">
 								<ul class="actions fit">
-									<li><input type="submit" value="Connexion" class="button primary fit" /></li>
+									<li><input id="connect_button" type="submit" value="Connexion" class="button primary fit" /></li>
 								</ul>
 							</div>
 						</div>
@@ -46,5 +46,6 @@
 		</section>
 
 		<?php require_once ("../template/footer.php");?>
+		<script type="text/javascript" src="../assets/js/improvement.js?<?php echo date(':i:s');?>"></script>
 	</body>
 </html>
