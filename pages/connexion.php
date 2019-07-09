@@ -28,7 +28,7 @@
 					<form method="post" action="#">
 						<div class="row gtr-uniform">
 							<div class="col-8 col-7-xsmall">
-								<input type="email" name="email" id="email" value="" placeholder="Email" />
+								<input type="text" name="login" id="login" value="" placeholder="Login" />
 							</div>
 							<div class="col-8 col-7-xsmall">
 								<input type="password" name="mdp" id="mdp" value="" placeholder="Mot de passe" />
