@@ -21,3 +21,22 @@ function connexion()
 
     return $dbh;
 }
+
+function getAllFlights()
+{
+    $dbh = connexion();
+    $tab = array();
+    $sql = "SELECT * FROM aerodrome";
+    $sth = $dbh -> prepare($sql);
+    $sth -> execute();
+    
+    while($result = $sth -> fetch(PDO::FETCH_OBJ))
+    {
+        $tab[] = $result;
+    }
+
+    $sth -> closeCursor();
+    return $tab;
+}
+
+?>

@@ -27,11 +27,8 @@
             </ul>
         </li>
 
-        <li>Se connecter
-             <ul>
-                <li><a href="<?php echo CHEMIN; ?>/pages/connexion.php">S'inscrire</a></li>
-            </ul>
-        </li>
+        <li><a href="<?php echo CHEMIN; ?>/pages/connexion.php">Se connecter</a></li>
+        
         <li><a href="<?php echo CHEMIN; ?>/pages/webmaster/webmaster.php">Webmaster</a></li>
 
     </ul>
