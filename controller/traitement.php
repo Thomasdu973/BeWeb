@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE HTML>
 <!--
 	Industrious by TEMPLATED
@@ -23,16 +26,48 @@
                 <div class="inner">
                     <div class="content">
                     <?php
-                        // on teste la déclaration de nos variables
-                        if ($_POST['login'] != "" && $_POST['mdp'] != "") {
-                            // on affiche nos résultats
-                            echo 'Votre login est '.$_POST['login'].' et votre mot de passe est '.$_POST['mdp'];
+                        include '../controller/utils.php';
+                        if (empty ($_POST['email']))
+                        {
+                            echo "<p>Le champ email est vide</p>";
                         }
 
                         else
                         {
-                            echo "Erreur";
+                            if (empty ($_POST['mdp']))
+                            {
+                                echo "<p>Le champ mot de passe est vide</p>";
+                            }
+
+                            else
+                            {
+                                // Protection contre les injections SQL
+                                $email = htmlentities($_POST['email'], ENT_QUOTES, "ISO-8859-1");
+                                $mdp = htmlentities($_POST['mdp'], ENT_QUOTES, "ISO-8859-1");
+
+                                // Coonexion à la base de donnée
+                                $mysqli = connect_db();
+
+                                // Requête à la base de donnée
+                                $requete = mysqli_query($mysqli,"SELECT * FROM utilisateur WHERE email = '".$email."' AND mot_passe = '".$mdp."'");
+                                
+                                // si il y a un résultat, mysqli_num_rows() nous donnera alors 1
+                                // si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
+                                if(mysqli_num_rows($requete) == 0) 
+                                {
+                                    echo "<p>Adresse email ou mot de passe incorrect, le compte n'a pas été trouvé.<p/>";
+                                } 
+                                
+                                else 
+                                {
+                                    // on ouvre la session avec $_SESSION:
+                                    $_SESSION['email'] = $email; // la session peut être appelée différemment et son contenu aussi peut être autre chose que le email
+                                    header('Location: ../pages/tableau_bord.php');
+                                }
+                            }
                         }
+                        // Fermeture de la base de donnée
+                        disconnect_db($db);
                         ?>
                     </div>
                 </div>

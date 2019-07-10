@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML>
 <!--
 	Industrious by TEMPLATED
@@ -115,7 +118,7 @@
 							<!-- Break -->
 							<div class="col-8">
 								<ul class="actions fit">
-									<li><input type="submit" value="Inscription" class="button primary fit" /></li>
+									<li><input id="subscribe_button" type="submit" value="Inscription" class="button primary fit" /></li>
 								</ul>
 							</div>
 						</div>
@@ -175,5 +178,6 @@
 			</section>
 
 		<?php require_once ("template/footer.php");?>
+		<script type="text/javascript" src="assets/js/improvement.js?<?php echo date(':i:s');?>"></script>
 	</body>
 </html>

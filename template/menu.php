@@ -10,24 +10,36 @@
 <nav id="menu">
     <ul class="links">
         <li><a href="<?php echo CHEMIN; ?>/index.php">Accueil</a></li>
+        <?php
+        if (isset($_SESSION['email']))
+        {
+            echo'
+            <li>Mes vols
+                <ul>
+                    <li><a href="'.CHEMIN.'/pages/mes_vols/ajouter_un_vol.php">Ajouter un vol</a></li>
+                    <li><a href="'.CHEMIN.'/pages/mes_vols/gestion_des_vols.php">Gestion des vols</a></li>
+                </ul>
+            </li>
 
-        <li>Mes vols
-            <ul>
-                <li><a href="<?php echo CHEMIN; ?>/pages/mes_vols/ajouter_un_vol.php">Ajouter un vol</a></li>
-                <li><a href="<?php echo CHEMIN; ?>/pages/mes_vols/gestion_des_vols.php">Gestion des vols</a></li>
-            </ul>
-        </li>
+            <li>Administration
+                <ul>
+                    <li><a href="'.CHEMIN.'/pages/administration/statistiques.php">Statistiques</a></li>
+                    <li><a href="'.CHEMIN.'/pages/administration/gestion_des_compagnies.php">Gestion des compagnies</a></li>
+                    <li><a href="'.CHEMIN.'/pages/administration/gestion_des_aerodromes.php">Gestion des aérodromes</a></li>
+                    <li><a href="'.CHEMIN.'/pages/administration/gestion_des_avions.php">Gestion des avions</a></li>
+                </ul>
+            </li>
+            <li><a href="'.CHEMIN.'/controller/deconnexion.php">Déconnexion</a></li>';
+        }
 
-        <li>Administration
-            <ul>
-                <li><a href="<?php echo CHEMIN; ?>/pages/administration/statistiques.php">Statistiques</a></li>
-                <li><a href="<?php echo CHEMIN; ?>/pages/administration/gestion_des_compagnies.php">Gestion des compagnies</a></li>
-                <li><a href="<?php echo CHEMIN; ?>/pages/administration/gestion_des_aerodromes.php">Gestion des aérodromes</a></li>
-                <li><a href="<?php echo CHEMIN; ?>/pages/administration/gestion_des_avions.php">Gestion des avions</a></li>
-            </ul>
-        </li>
+        else
+        {
+            echo '
+                <li><a href="'.CHEMIN.'/pages/connexion.php">Connexion</a></li>
+                <li><a href="'.CHEMIN.'/pages/inscription.php">Inscription</a></li>';
+        }
 
-        <li><a href="<?php echo CHEMIN; ?>/pages/connexion.php">Se connecter</a></li>
+        ?>
         
         <li><a href="<?php echo CHEMIN; ?>/pages/webmaster/webmaster.php">Webmaster</a></li>
 
