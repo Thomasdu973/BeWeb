@@ -28,12 +28,32 @@
 				<div class="content">
 					<!-- Form -->
 					<h3>Entrez vos coordonnées</h3>
+					<?php
+						if (isset($_GET['ident']))
+						{
+							echo '<p>Veuillez vous identifier</p>';
+						}
+
+						else if (isset($_GET['email']))
+						{
+							echo '<p>Le champ email est vide</p>';
+						}
+
+						else if (isset($_GET['mdp']))
+						{
+							echo '<p>Le champ mot de passe est vide</p>';
+						}
+						else if (isset($_GET['erreur']))
+						{
+							echo '<p>Email ou mot de passe incorrect</p>';
+						}
+					?>
 					<div class="col">
 					<?php
-						if (!isset($_POST['pseudo'])) //On est dans la page de formulaire
+						if (!isset($_POST['email']))
 						{
 							echo '
-							<form method="post" action="../controller/traitement.php">
+							<form method="post" action="../controller/traitement_connexion.php">
 								<div class="row gtr-uniform">
 									<div class="col-8 col-7-xsmall">
 										<input type="text" name="email" id="email" value="" placeholder="Email" />
@@ -48,8 +68,12 @@
 										</ul>
 									</div>
 								</div>
-							</form>
-							';
+							</form>';
+						}
+
+						else
+						{
+							echo '<p>Vous êtes déjà connecté</p>';
 						}
 					?>
 

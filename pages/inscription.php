@@ -25,38 +25,32 @@
 					<!-- Form -->
 					<h3>Formulaire d'inscription</h3>
 					<div class="col">
-					<form method="post" action="#">
+					<form method="post" action="../controller/traitement_inscription.php">
 						<div class="row gtr-uniform">
-							<div class="col-2 col-lg-2">
-							</div>
 							<div class="col-8 col-12-xsmall">
 								<input type="text" name="nom" id="nom" value="" placeholder="Nom" />
 							</div>
-							<div class="col-2 col-lg-2">
-							</div>
-							<div class="col-2 col-lg-2">
-							</div>
+
 							<div class="col-8 col-12-xsmall">
 								<input type="text" name="prenom" id="prenom" value="" placeholder="Prenom" />
 							</div>
-							<div class="col-2 col-lg-2">
-							</div>
-							<div class="col-2 col-lg-2">
-							</div>
+
 							<div class="col-8 col-7-xsmall">
 								<input type="email" name="email" id="email" value="" placeholder="Email" />
 							</div>
-							<div class="col-2 col-lg-2">
-							</div>
-							<div class="col-2 col-lg-2">
-							</div>
+
 							<div class="col-8 col-7-xsmall">
 								<input type="password" name="mdp" id="mdp" value="" placeholder="Mot de passe" />
 							</div>
-							<div class="col-2 col-lg-2">
+
+							<div class="col-8 col-7-xsmall">
+								<select name="statut" id="category">
+									<option value="">- Statut -</option>
+									<option value="alpha">Administrateur</option>
+									<option value="beta">Pilote</option>
+								</select>
 							</div>
-							<div class="col-2 col-lg-2">
-							</div>
+
 							<!-- Break -->
 							<div class="col-8">
 								<ul class="actions fit">
