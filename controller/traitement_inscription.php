@@ -3,40 +3,41 @@
 
     include '../controller/utils.php';
     
-    if (empty($_POST['nom']) && empty($_POST['prenom']) && empty($_POST['email']) && empty($_POST['mdp']))
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $email = $_POST['email'];
+    $statut = $_POST['statut'];
+
+    if (!isset($_POST['nom']))
     {
-        header('Location: ../pages/inscription.php?vide');
+        $erreur . = 'nom';
     }
 
-    else if (empty($_POST['email']))
+    else if (!isset($_POST['prenom']))
     {
-        header('Location: ../pages/inscription.php?email');
+        $erreur = .';prenom';
     }
 
-    else
+    else if (!isset($_POST['email']))
     {
-        if (empty($_POST['mdp']))
-        {
-            header('Location: ../pages/inscription.php?mdp');
-        }
+        $erreur = .';email';
+    }
 
-        else
-        {
-            $nom = $_POST['nom'];
-            $prenom = $_POST['prenom'];
-            $email = $_POST['email'];
-            $mdp = $_POST['mdp'];
-            $statut = $_POST['statut'];
-            
-            if($verif == 0) // Authetification incorrecte
-            {
-                header('Location: ../pages/inscription.php?erreur');
-            } 
-            
-            else 
-            {
-                header('Location: ../pages/connexion.php');
-            }
-        }
+    else if (!isset($_POST['prenom']))
+    {
+        $erreur = .';statut';
+    }
+
+    
+    $verif = add_utilisateurData($nom, $prenom, $email, $statut);
+
+    if($verif == 1) // Authetification incorrecte
+    {
+        header('Location: ../pages/inscription.php?erreur='".$erreur."'');
+    } 
+    
+    else if ($verif == 0)
+    {
+        header('Location: ../pages/connexion.php');
     }
 ?>

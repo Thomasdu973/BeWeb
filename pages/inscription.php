@@ -23,6 +23,13 @@
 			<div class="inner">
 				<div class="content">
 					<!-- Form -->
+					<?php
+						if (isset($_GET['erreur']))
+						{
+							echo 'Erreur :		';
+							echo $_GET['erreur'];
+						}
+					?>
 					<h3>Formulaire d'inscription</h3>
 					<div class="col">
 					<form method="post" action="../controller/traitement_inscription.php">
@@ -40,18 +47,10 @@
 							</div>
 
 							<div class="col-8 col-7-xsmall">
-								<input type="password" name="mdp" id="mdp" value="" placeholder="Mot de passe" />
-							</div>
-
-							<div class="col-8 col-7-xsmall">
-								<input type="password" name="confirm_mdp" id="mdp" value="" placeholder="Confirmation du mot de passe" />
-							</div>
-
-							<div class="col-8 col-7-xsmall">
 								<select name="statut" id="category">
 									<option value="">- Statut -</option>
-									<option value="alpha">Administrateur</option>
-									<option value="beta">Pilote</option>
+									<option value="1">Administrateur</option>
+									<option value="0">Pilote</option>
 								</select>
 							</div>
 

@@ -35,7 +35,7 @@
       $reponse = mysqli_query($mysqli,"SELECT * FROM utilisateur WHERE email = '".$email."' AND mot_passe = '".$mdp."'");
       
       // Deconnexion à la base de donnée
-      disconnect_db($db);
+      disconnect_db($mysqli);
 
       // Si il y a un résultat, mysqli_num_rows() nous donnera alors 1
       // Si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
@@ -59,21 +59,75 @@
       $_SESSION['email'] = $donnee['email'];
       $_SESSION['statut'] = $donnee['statut'];
       $_SESSION['actif'] = $donnee['actif'];
-      echo $_SESSION_['nom'];
 
       // Deconnexion à la base de donnée
-      disconnect_db($db);
+      disconnect_db($mysqli);
    }
 
-   function inscription($nom, $prenom, $email, $mdp, $statut)
+   function motDePasse($longueur=10) { // par défaut, on affiche un mot de passe de 10 caractères
+       // chaine de caractères qui sera mis dans le désordre:
+       $Chaine = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // 62 caractères au total
+       // on mélange la chaine avec la fonction str_shuffle(), propre à PHP
+       $Chaine = str_shuffle($Chaine);
+       // ensuite on coupe à la longueur voulue avec la fonction substr(), propre à PHP aussi
+       $Chaine = substr($Chaine,0,$longueur);
+       // ensuite on retourne notre chaine aléatoire de "longueur" caractères:
+       return $Chaine;
+   }
+
+   function envoi_mail($to, $mdp)
    {
+      $from = "test@plandevol.com";
+      $subject = "Vérification de l'adresse e-mail";
+      $message = "Voici votre mot de passe '.$mdp'";
+      $headers = "From: ". $from;
+      mail($to, $subject, $message, $headers);
+   }
+
+   function add_utilisateurData($nom, $prenom, $email, $statut)
+   {
+      echo
+      // Génération du mot de passe
+      $mot_passe = motDePasse();
+
       // Coonexion à la base de donnée
       $mysqli = connect_db();
 
-      $sql = "INSERT INTO utilisateur ("", lastname, email)
-               VALUES ('John', 'Doe', 'john@example.com')";
+      // Recherche si l'utilisateur existe déjà
+      $requete = "SELECT * FROM utilisateur WHERE email = '".$email."'";
+      $reponse = mysqli_query($mysqli, $requete);
+      $ligne = mysqli_num_rows($reponse);
+      
+      if ( $ligne == 1) // L'email exist déjà
+      {
+         // Deconnexion à la base de donnée
+         disconnect_db($mysqli);
 
-               "INSERT INTO utilisateur (id_utilisateur, nom, prenom, email, mot_passe, statut, actif) 
-                VALUE ('".$nom."','".$prenom"') "
+         return $ligne;
+      }
+         
+      else // Si l'utilisateur n'existe pas...
+      {
+         // Création du nouvel id
+         $reponse = mysqli_query($mysqli,"SELECT MAX(id_utilisateur) AS maxId FROM utilisateur");
+         $donnee = mysqli_fetch_assoc($reponse);
+
+         $id_utilisateur = $donnee['maxId'] + 1;
+
+         // Le nouvel utilisateur est actif mais doit modifier son mot de passe
+         $actif = 2;
+
+         $insert_requete = "INSERT INTO utilisateur (id_utilisateur, nom, prenom, email, mot_passe, statut, actif) 
+         VALUE ('".$id_utilisateur."','".$nom."','".$prenom."','".$email."','".$mot_passe."','".$statut."','".$actif."')";
+
+         mysqli_query($mysqli, $insert_requete);
+
+         // Envoi du mail
+         mail($email, $mdp);
+
+         // Deconnexion à la base de donnée
+         disconnect_db($mysqli);
+         return 0;
+      }
    }
 ?>

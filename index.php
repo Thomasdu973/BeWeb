@@ -108,17 +108,10 @@ session_start();
 							<div class="col-2 col-lg-2"></div>
 
 							<div class="col-8 col-7-xsmall">
-								<input type="password" name="mdp" id="mdp" value="" placeholder="Mot de passe" />
-							</div>
-
-							<div class="col-2 col-lg-2"></div>
-							<div class="col-2 col-lg-2"></div>
-
-							<div class="col-8 col-7-xsmall">
 								<select name="statut" id="category">
 									<option value="">- Statut -</option>
-									<option value="alpha">Administrateur</option>
-									<option value="beta">Pilote</option>
+									<option value="1">Administrateur</option>
+									<option value="0">Pilote</option>
 								</select>
 							</div>
 
