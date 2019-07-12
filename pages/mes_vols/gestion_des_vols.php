@@ -26,9 +26,20 @@
 			<div class="inner">
 				<div class="content">
 					<header>
-						<h2>Feugiat consequat</h2>
+						<h2>Tableau de vols</h2>
 					</header>
-					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
+					<p> <?php $data=get_volData();
+
+
+print_r($data);			/*
+						Date <?php echo $data['date_debut']; ?> </p>
+						Aérodromes dep: <?php echo $data['OACI_dep']; ?><br />
+									arr:  <?php echo $data['OACI_arr']; ?>
+						Durée <?php echo $data['date_arr']-$data['date_debut']; ?>
+						Avions <?php echo $data['id_avion']; ?>
+						Etapes <?php echo $data[]; ?>
+						Qualifications <?php echo $data['qualif']; ?>
+						Remarques <?php echo $data['commentaires']; ?>*/
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
 					<hr />
 					<h3>Magna odio tempus commodo</h3>

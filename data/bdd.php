@@ -39,4 +39,21 @@ function getAllFlights()
     return $tab;
 }
 
+function get_VolData()
+{
+    $dbh = connexion();
+    $tab = array();
+    $sql = "SELECT * FROM vol JOIN route ON vol.id_vol=route.id_vol; ";
+    $sth = $dbh -> prepare($sql);
+    $sth -> execute();
+    
+    while($result = $sth -> fetch(PDO::FETCH_OBJ))
+    {
+        $tab[] = $result;
+    }
+
+    $sth -> closeCursor();
+    return $tab;
+
+
 ?>
