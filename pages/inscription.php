@@ -44,6 +44,10 @@
 							</div>
 
 							<div class="col-8 col-7-xsmall">
+								<input type="password" name="confirm_mdp" id="mdp" value="" placeholder="Confirmation du mot de passe" />
+							</div>
+
+							<div class="col-8 col-7-xsmall">
 								<select name="statut" id="category">
 									<option value="">- Statut -</option>
 									<option value="alpha">Administrateur</option>

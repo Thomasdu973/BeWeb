@@ -19,4 +19,24 @@ $(document).ready(function()
     {
         $('#subscribe_button').attr('value', 'Inscription');
     });
+
+    $("#mainForm").validate({
+    rules : {
+        email : {
+        required : true
+        },
+        mdp : {
+        minlength : 3
+        },	
+        login : {
+        required : true,
+        mail : true
+        }
+    },
+    messages : {
+        firstName : "Veuillez fournir un prénom",
+        lastName : "Veuillez fournir un nom d'au moins trois lettres",
+        login : "L'email est incorrect"
+    }
+    });
 });

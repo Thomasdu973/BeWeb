@@ -53,7 +53,7 @@
 						if (!isset($_POST['email']))
 						{
 							echo '
-							<form method="post" action="../controller/traitement_connexion.php">
+							<form method="post" action="../controller/traitement_connexion.php" id=""mainform>
 								<div class="row gtr-uniform">
 									<div class="col-8 col-7-xsmall">
 										<input type="text" name="email" id="email" value="" placeholder="Email" />
@@ -83,6 +83,7 @@
 
 		<?php require_once ("../template/footer.php");?>
 		<script type="text/javascript" src="../assets/js/improvement.js?<?php echo date(':i:s');?>"></script>
+		<script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
 	</body>
 </html>
 

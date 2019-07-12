@@ -64,4 +64,16 @@
       // Deconnexion à la base de donnée
       disconnect_db($db);
    }
+
+   function inscription($nom, $prenom, $email, $mdp, $statut)
+   {
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+
+      $sql = "INSERT INTO utilisateur ("", lastname, email)
+               VALUES ('John', 'Doe', 'john@example.com')";
+
+               "INSERT INTO utilisateur (id_utilisateur, nom, prenom, email, mot_passe, statut, actif) 
+                VALUE ('".$nom."','".$prenom"') "
+   }
 ?>
