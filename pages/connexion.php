@@ -12,7 +12,6 @@
 	<?php
 	require_once ("../data/config.php");
 	require_once ("../template/header.php");
-	if ($id!=0) erreur(ERR_IS_CO);
 	?>
 
 	<body class="is-preload">
