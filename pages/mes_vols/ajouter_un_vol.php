@@ -20,7 +20,81 @@
 		<div id="heading" >
 			<h1>Ajouter un vol</h1>
 		</div>
+		<form method="post" action="">
 
+			<p>
+				<label for="avions">Avions utilisé</label><br />
+				<?php
+					$req="SELECT type_avion FROM avions";
+					$res=mysql_query($req) or die("erreur dans la requête $req");
+					<select size='1' name='avion' id='avion'>;
+					while ($avion=mysql_fetch_array($res))
+					{ 
+						for ($i=0;$i<count($avion);$i++)
+						<option value='$avion[$i]'>$avion[$i]</option>;
+					}
+					echo </select>;
+	
+				?>	
+			
+			</p>
+			<p>
+				<label for="aerodrome">Aérodrome départ</label><br />
+				<?php
+					$req="SELECT OACI FROM aerodrome";
+					$res=mysql_query($req) or die("erreur dans la requête $req");
+					<select size='1' name='aerodrome' id='aerodrome'>;
+					while ($aerodrome=mysql_fetch_array($res))
+					{ 
+						for ($i=0;$i<count($aerodrome);$i++)
+						<option value='$aerodrome[$i]'>$aerodrome[$i]</option>;
+					}
+					echo </select>;
+	
+				?>	
+			</p>
+   			<p><input type="date" name="date de départ"/></p>
+
+			<p>
+			<?php
+					<label for="aerodrome">Aérodrome arrivé</label><br />
+					$req="SELECT OACI FROM aerodrome";
+					$res=mysql_query($req) or die("erreur dans la requête $req");
+					<select size='1' name='aerodrome' id='aerodrome'>;
+					while ($aerodrome=mysql_fetch_array($res))
+					{ 
+						for ($i=0;$i<count($aerodrome);$i++)
+						<option value='$aerodrome[$i]'>$aerodrome[$i]</option>;
+					}
+					echo </select>;
+	
+			?>
+		
+			</p>
+			<p><input type="date" name="date de arrivé" /></p>
+			<p>
+			<?php 
+					<label for="aerodrome">Aérodrome intermédiaire</label><br />
+
+					$req="SELECT OACI FROM aerodrome";
+					$res=mysql_query($req) or die("erreur dans la requête $req");
+					<select size='1' name='aerodrome' id='aerodrome'>;
+					while ($aerodrome=mysql_fetch_array($res))
+					{ 
+						for ($i=0;$i<count($aerodrome);$i++)
+						<option value='$aerodrome[$i]'>$aerodrome[$i]</option>;
+					}
+					echo </select>;
+					
+	
+			?>
+			<input type="date" name="date de départ"/>
+			<input type="date" name="date d'arrivée"/>
+			</p>
+			<input type="text" name="Qualification" id="pseudo" />
+			<input type="text" name="Commentaires" />
+	
+		</form>
 		<!-- Main -->
 		<section id="main" class="wrapper">
 			<div class="inner">

@@ -28,18 +28,39 @@
 					<header>
 						<h2>Tableau de vols</h2>
 					</header>
-					<p> <?php $data=get_volData();
+					<p> <?php $data=get_volData(); 
 
 
-print_r($data);			/*
-						Date <?php echo $data['date_debut']; ?> </p>
-						Aérodromes dep: <?php echo $data['OACI_dep']; ?><br />
-									arr:  <?php echo $data['OACI_arr']; ?>
-						Durée <?php echo $data['date_arr']-$data['date_debut']; ?>
-						Avions <?php echo $data['id_avion']; ?>
-						Etapes <?php echo $data[]; ?>
-						Qualifications <?php echo $data['qualif']; ?>
-						Remarques <?php echo $data['commentaires']; ?>*/
+print_r($data);	?>
+
+						<table class="orders_details" width="100%" border="0" cellspacing="0" cellpadding="5" style="text-align:center">
+									<thead>
+										<tr>
+											<th>Date</th>
+											<th>Aérodromes</th>
+											<th>Durée</th>
+											<th>Avions</th>
+											<th>Qualifications</th>
+											<th>Remarques</th>
+										</tr>
+									</thead>	
+									<tbody>	
+											<tr>
+											<td>Date <?php echo $data['date_debut']; ?> </td>
+											<td>Aérodromes dep: <?php echo $data['OACI_dep']; ?> <br/>
+														arr:  <?php echo $data['OACI_arr']; ?></td>
+											<td>Durée <?php echo $data['date_arr']-$data['date_debut']; ?></td>
+											<td>Avions <?php echo $data['id_avion']; ?></td>
+											<td>Etapes <?php echo $data[]; ?>
+												<ol>
+													<li>
+													</li>
+												</ol>
+											</td>
+											<td>Qualifications <?php echo $data['qualif']; ?></td>
+											<td>Remarques <?php echo $data['commentaires']; ?></td>
+											</tr>
+									</tbody>
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
 					<hr />
 					<h3>Magna odio tempus commodo</h3>

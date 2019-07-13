@@ -54,6 +54,42 @@ function get_VolData()
 
     $sth -> closeCursor();
     return $tab;
+}
+
+function get_aerodromeData()
+{
+    $dbh = connexion();
+    $tab = array();
+    $sql = "SELECT * FROM aerodrome ";
+    $sth = $dbh -> prepare($sql);
+    $sth -> execute();
+    
+    while($result = $sth -> fetch(PDO::FETCH_OBJ))
+    {
+        $tab[] = $result;
+    }
+
+    $sth -> closeCursor();
+    return $tab;
+}
+
+function get_avionsData()
+{
+    $dbh = connexion();
+    $tab = array();
+    $sql = "SELECT * FROM avions JOIN compagnie ON avions.id_compagnie=compagnie.id_compagnie ";
+    $sth = $dbh -> prepare($sql);
+    $sth -> execute();
+    
+    while($result = $sth -> fetch(PDO::FETCH_OBJ))
+    {
+        $tab[] = $result;
+    }
+
+    $sth -> closeCursor();
+    return $tab;
+}
+
 
 
 ?>
