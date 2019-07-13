@@ -1,4 +1,13 @@
 <?php
+   function deconnecter_utilisateur()
+   {
+      session_unset();
+      session_destroy();
+      session_write_close();
+      setcookie(session_name(),'',0,'/');
+      session_regenerate_id(true);
+   }
+
    // Connexion à la base de donnée
    function connect_db()
    {
@@ -37,8 +46,8 @@
       // Deconnexion à la base de donnée
       disconnect_db($mysqli);
 
-      // Si il y a un résultat, mysqli_num_rows() nous donnera alors 1
-      // Si mysqli_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
+      // Si il y a un résultat, mysqli_num_rows() retourne 1
+      // Si mysqli_num_rows() retourne 0, aucun résultat
       return mysqli_num_rows($reponse);
    }
 
@@ -86,7 +95,6 @@
 
    function add_utilisateurData($nom, $prenom, $email, $statut)
    {
-      echo
       // Génération du mot de passe
       $mot_passe = motDePasse();
 
@@ -103,7 +111,7 @@
          // Deconnexion à la base de donnée
          disconnect_db($mysqli);
 
-         return $ligne;
+         return 0;
       }
          
       else // Si l'utilisateur n'existe pas...
@@ -127,7 +135,46 @@
 
          // Deconnexion à la base de donnée
          disconnect_db($mysqli);
+         return 1;
+      }
+   }
+
+   function update_utilisateurData($champ, $newvalue, $id_utilisateur)
+   {
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+
+      $check_requete = 
+      "SELECT ".$champ."
+       FROM utilisateur
+       WHERE id_utilisateur = '".$id_utilisateur."'";
+
+      $reponse = mysqli_query($mysqli, $check_requete);
+      $donnee = mysqli_fetch_assoc($reponse);
+      echo $donnee['mot_passe'];
+
+      if ($donnee['mot_passe'] == $newvalue) // La nouvelle valeur est la même que l'ancienne
+      {
+         // Deconnexion à la base de donnée
+         disconnect_db($mysqli);
          return 0;
       }
+
+      else  // On peut mettre à jour cette nouvelle valeur
+      {
+         $update_requete = 
+         "UPDATE utilisateur
+          SET ".$champ." = '".$newvalue."'
+          WHERE id_utilisateur = '".$id_utilisateur."'";
+
+          echo $update_requete;
+         mysqli_query($mysqli, $update_requete);
+
+         // Deconnexion à la base de donnée
+         disconnect_db($mysqli);
+
+         return 1;
+      }
+
    }
 ?>

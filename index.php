@@ -87,28 +87,28 @@ session_start();
 						<div class="row gtr-uniform">
 							<div class="col-2 col-lg-2"></div>
 							<div class="col-8 col-12-xsmall">
-								<input type="text" name="nom" id="nom" value="" placeholder="Nom" />
+								<input type="text" name="nom" id="nom" value="" placeholder="Nom" required/>
 							</div>
 
 							<div class="col-2 col-lg-2"></div>
 							<div class="col-2 col-lg-2"></div>
 
 							<div class="col-8 col-12-xsmall">
-								<input type="text" name="prenom" id="prenom" value="" placeholder="Prenom" />
+								<input type="text" name="prenom" id="prenom" value="" placeholder="Prenom" required/>
 							</div>
 
 							<div class="col-2 col-lg-2"></div>
 							<div class="col-2 col-lg-2"></div>
 
 							<div class="col-8 col-7-xsmall">
-								<input type="email" name="email" id="email" value="" placeholder="Email" />
+								<input type="email" name="email" id="email" value="" placeholder="Email" required/>
 							</div>
 
 							<div class="col-2 col-lg-2"></div>
 							<div class="col-2 col-lg-2"></div>
 
 							<div class="col-8 col-7-xsmall">
-								<select name="statut" id="category">
+								<select name="statut" id="category" required>
 									<option value="">- Statut -</option>
 									<option value="1">Administrateur</option>
 									<option value="0">Pilote</option>

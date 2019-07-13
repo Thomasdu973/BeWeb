@@ -10,7 +10,7 @@
 <nav id="menu">
     <ul class="links">
         <?php
-        if (isset($_SESSION['email']))
+        if (isset($_SESSION['email']) && $_SESSION['actif'] == 1)
         {
             echo'
             <li><a href="'.CHEMIN.'/pages/tableau_bord.php">Tableau de bord</a></li>
@@ -21,7 +21,7 @@
                 </ul>
             </li>';
             
-            if($_SESSION['statut'] == 1)
+            if($_SESSION['statut'] == 1 && $_SESSION['actif'] == 1)
             {
                echo'
                <li>Administration
