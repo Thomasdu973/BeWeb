@@ -34,10 +34,10 @@
    function verif_auth($email, $mdp)
    {
       // Protection contre les injections SQL
-      $email = htmlentities($_POST['email'], ENT_QUOTES, "ISO-8859-1");
-      $mdp = htmlentities($_POST['mdp'], ENT_QUOTES, "ISO-8859-1");
+      $email = htmlentities($email, ENT_QUOTES, "ISO-8859-1");
+      $mdp = htmlentities($mdp, ENT_QUOTES, "ISO-8859-1");
 
-      // Coonexion à la base de donnée
+      // Connexion à la base de donnée
       $mysqli = connect_db();
 
       // Requête à la base de donnée
@@ -53,6 +53,9 @@
 
    function init_session($email)
    {
+      // Protection contre les injections SQL
+      $email = htmlentities($email, ENT_QUOTES, "ISO-8859-1");
+
       // Coonexion à la base de donnée
       $mysqli = connect_db();
 
@@ -95,6 +98,12 @@
 
    function add_utilisateurData($nom, $prenom, $email, $statut)
    {
+      // Protection contre les injections SQL
+      $nom = htmlentities($nom, ENT_QUOTES, "ISO-8859-1");
+      $prenom = htmlentities($prenom, ENT_QUOTES, "ISO-8859-1");
+      $email = htmlentities($email, ENT_QUOTES, "ISO-8859-1");
+      $statut = htmlentities($statut, ENT_QUOTES, "ISO-8859-1");
+
       // Génération du mot de passe
       $mot_passe = motDePasse();
 
@@ -141,6 +150,11 @@
 
    function update_utilisateurData($champ, $newvalue, $id_utilisateur)
    {
+      // Protection contre les injections SQL
+      $champ = htmlentities($champ, ENT_QUOTES, "ISO-8859-1");
+      $newvalue = htmlentities($newvalue, ENT_QUOTES, "ISO-8859-1");
+      $id_utilisateur = htmlentities($id_utilisateur, ENT_QUOTES, "ISO-8859-1");
+
       // Coonexion à la base de donnée
       $mysqli = connect_db();
 
