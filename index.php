@@ -36,6 +36,14 @@ session_start();
 						<h2>Bonjour</h2>
 						<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor.</p>
 					</header>
+					<?php
+						echo'<p>Id_utilisateur : '.$_SESSION['id_utilisateur'].'</p>
+						<p>Nom : '.$_SESSION['nom'].'</p>
+						<p>Prenom : '.$_SESSION['prenom'].'</p>
+						<p>Email : '.$_SESSION['email'].'</p>
+						<p>Statut : '.$_SESSION['statut'].'</p>
+						<p>Actif : '.$_SESSION['actif'].'</p>';
+					?>
 					<div class="highlights">
 						<section>
 							<div class="content">

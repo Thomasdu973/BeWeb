@@ -32,7 +32,7 @@
 							<header>
 								<h2>Tableau de vols</h2>
 							</header>
-							<table class="table" data-toggle="table" data-search="true" data-pagination="true" data-pagination-size="10">
+							<table class="table" data-toggle="table" data-search="true" data-pagination="true" data-pagination-size="2">
 
 								<thead class="thead-dark">
 									<tr>
@@ -47,20 +47,29 @@
 									</tr>
 								</thead>
 								<tbody>';
+
 				$tableau = get_VolData($_SESSION['id_utilisateur']);
-// <span> class="modif" data-type="text" data-name="update_nom" data-url="" data-pk="1"</span>
+
 				foreach ($tableau as $ligne)
 				{
+					// $date_depart = explode(" ", $ligne['date_debut']);
+					// $date_arrivee = explode(" ", $ligne['date_arr']);
+
+					$date_depart_abs = strtotime($ligne['date_debut']);
+					$date_depart = explode(" ", $ligne['date_debut']);
+					$date_arrivee_abs = strtotime($ligne['date_arr']);
+					$diff = dateDiff($date_arrivee_abs, $date_depart_abs);
+
 					echo '
-					<tr>
-					<td>X</td>
-					<td><a href="#" id="dob" data-format="dd.mm.yyyy">15.05.1984</a></td>
-					<td>aérodromes</td>
-					<td>durée</td>
-					<td>'.$ligne['id_avion'].'</td>
-					<td>etapes</td>
-					<td>'.$ligne['qualif'].'</td>
-					<td>'.$ligne['commentaires'].'</td>
+					<tr id='.$ligne['id_vol'].'>
+						<td><a class="icon fa-times-circle"></a></td>
+						<td>'.$date_depart[0].'</td>
+						<td>Dep : '.$ligne['OACI_dep'].' Arr : '.$ligne['OACI_arr'].'</td>
+						<td>'.$diff['hour'].'h'.$diff['minute'].'</td>
+						<td>'.$ligne['id_avion'].'</td>
+						<td>etapes</td>
+						<td>'.$ligne['qualif'].'</td>
+						<td>'.$ligne['commentaires'].'</td>
 					</tr>';
 				}
 						echo '</tbody>

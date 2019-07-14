@@ -177,9 +177,7 @@
       $reponse = mysqli_query($mysqli, $check_requete);
       $donnee = mysqli_fetch_assoc($reponse);
       
-      echo $donnee['mot_passe'];
-
-      if ($donnee['mot_passe'] == $newvalue) // La nouvelle valeur est la même que l'ancienne
+      if ($donnee[$champ] == $newvalue) // La nouvelle valeur est la même que l'ancienne
       {
          // Deconnexion à la base de donnée
          disconnect_db($mysqli);
@@ -193,7 +191,6 @@
           SET ".$champ." = '".$newvalue."'
           WHERE id_utilisateur = '".$id_utilisateur."'";
 
-          echo $update_requete;
           $reponse = mysqli_query($mysqli, $update_requete);
 
          // Libération de la mémoire
@@ -207,6 +204,52 @@
 
    }
 
+      ////////////////////////////////////////////////////////////////////////////////////
+      function update_volData($champ, $newvalue, $id_vol)
+      {
+         // Protection contre les injections SQL
+         $champ = htmlentities($champ, ENT_QUOTES, "ISO-8859-1");
+         $newvalue = htmlentities($newvalue, ENT_QUOTES, "ISO-8859-1");
+         $id_vol = htmlentities($id_vol, ENT_QUOTES, "ISO-8859-1");
+   
+         // Coonexion à la base de donnée
+         $mysqli = connect_db();
+   
+         $check_requete = 
+         "SELECT ".$champ."
+          FROM vol
+          WHERE id_vol = '".$id_vol."'";
+   
+         $reponse = mysqli_query($mysqli, $check_requete);
+         $donnee = mysqli_fetch_assoc($reponse);
+         
+         if ($donnee[$champ] == $newvalue) // La nouvelle valeur est la même que l'ancienne
+         {
+            // Deconnexion à la base de donnée
+            disconnect_db($mysqli);
+            return 0;
+         }
+   
+         else  // On peut mettre à jour cette nouvelle valeur
+         {
+            $update_requete = 
+            "UPDATE vol
+             SET ".$champ." = '".$newvalue."'
+             WHERE id_vol = '".$id_vol."'";
+   
+             $reponse = mysqli_query($mysqli, $update_requete);
+   
+            // Libération de la mémoire
+            mysqli_free_result($reponse);
+   
+            // Deconnexion à la base de donnée
+            disconnect_db($mysqli);
+   
+            return 1;
+         }
+   
+      }
+
    ////////////////////////////////////////////////////////////////////////////////////
    function get_volData($id_utilisateur)
    {
@@ -216,7 +259,10 @@
       // Coonexion à la base de donnée
       $mysqli = connect_db();
 
-      $sql  = 'SELECT id_vol, id_avion, qualif, commentaires FROM `vol` WHERE id_utilisateur = '.$id_utilisateur.'';
+
+      $sql  = 'SELECT DISTINCT * FROM `vol`
+               JOIN route ON vol.id_vol=route.id_vol
+               WHERE id_utilisateur = '.$id_utilisateur.'';
 
       $reponse = mysqli_query($mysqli, $sql);
 
@@ -237,4 +283,24 @@
 
       return $tableau;
    }
+
+   ////////////////////////////////////////////////////////////////////////////////////
+   function dateDiff($date1, $date2){
+      $diff = abs($date1 - $date2); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
+      $retour = array();
+   
+      $tmp = $diff;
+      $retour['second'] = $tmp % 60;
+   
+      $tmp = floor( ($tmp - $retour['second']) /60 );
+      $retour['minute'] = $tmp % 60;
+   
+      $tmp = floor( ($tmp - $retour['minute'])/60 );
+      $retour['hour'] = $tmp % 24;
+   
+      $tmp = floor( ($tmp - $retour['hour'])  /24 );
+      $retour['day'] = $tmp;
+   
+      return $retour;
+  }
 ?>
