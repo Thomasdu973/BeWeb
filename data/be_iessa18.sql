@@ -229,6 +229,15 @@ CREATE TABLE IF NOT EXISTS `route` (
   KEY `id_vol` (`id_vol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Données de la table `route`
+--
+
+INSERT INTO `utilisateur` (`OACI_dep`, `OACI_arr`, `date_debut`, `date_arr`, `id_vol`) VALUES
+('LFBO', 'LFBD', '2019-07-01', '2019-07-01', '1'),
+('LFBD', 'LFBZ', '2019-07-01', '2019-07-01', '1'),
+('LFBZ', 'LFBS', '2019-07-01', '2019-07-01', '1');
+
 -- --------------------------------------------------------
 
 --

@@ -39,4 +39,19 @@ $(document).ready(function()
         login : "L'email est incorrect"
     }
     });
+
+    $.fn.editable.defaults.mode = 'inline';
+
+    $('#date').editable({
+        url: '/post',
+        title: 'Enter username'
+    });
+
+    $('#dob').editable({
+        type:  'date',
+        pk:    1,
+        name:  'dob',
+        url:   'post.php',  
+        title: 'Select Date of birth'
+     });
 });

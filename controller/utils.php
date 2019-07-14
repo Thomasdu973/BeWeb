@@ -1,4 +1,5 @@
 <?php
+   ////////////////////////////////////////////////////////////////////////////////////
    function deconnecter_utilisateur()
    {
       session_unset();
@@ -25,12 +26,14 @@
          return $db;
    }
 
+   ////////////////////////////////////////////////////////////////////////////////////
    // Fermer la connexion à la base de donnée
    function disconnect_db($db)
    {
       $db = mysqli_close();
    }
 
+   ////////////////////////////////////////////////////////////////////////////////////
    function verif_auth($email, $mdp)
    {
       // Protection contre les injections SQL
@@ -51,6 +54,7 @@
       return mysqli_num_rows($reponse);
    }
 
+   ////////////////////////////////////////////////////////////////////////////////////
    function init_session($email)
    {
       // Protection contre les injections SQL
@@ -76,6 +80,7 @@
       disconnect_db($mysqli);
    }
 
+   ////////////////////////////////////////////////////////////////////////////////////
    function motDePasse($longueur=10) { // par défaut, on affiche un mot de passe de 10 caractères
        // chaine de caractères qui sera mis dans le désordre:
        $Chaine = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // 62 caractères au total
@@ -87,6 +92,7 @@
        return $Chaine;
    }
 
+   ////////////////////////////////////////////////////////////////////////////////////
    function envoi_mail($to, $mdp)
    {
       $from = "test@plandevol.com";
@@ -96,6 +102,7 @@
       mail($to, $subject, $message, $headers);
    }
 
+   ////////////////////////////////////////////////////////////////////////////////////
    function add_utilisateurData($nom, $prenom, $email, $statut)
    {
       // Protection contre les injections SQL
@@ -137,10 +144,13 @@
          $insert_requete = "INSERT INTO utilisateur (id_utilisateur, nom, prenom, email, mot_passe, statut, actif) 
          VALUE ('".$id_utilisateur."','".$nom."','".$prenom."','".$email."','".$mot_passe."','".$statut."','".$actif."')";
 
-         mysqli_query($mysqli, $insert_requete);
+         $reponse = mysqli_query($mysqli, $insert_requete);
 
          // Envoi du mail
          mail($email, $mdp);
+
+         // Libération de la mémoire
+         mysqli_free_result($reponse);
 
          // Deconnexion à la base de donnée
          disconnect_db($mysqli);
@@ -148,6 +158,7 @@
       }
    }
 
+   ////////////////////////////////////////////////////////////////////////////////////
    function update_utilisateurData($champ, $newvalue, $id_utilisateur)
    {
       // Protection contre les injections SQL
@@ -165,6 +176,7 @@
 
       $reponse = mysqli_query($mysqli, $check_requete);
       $donnee = mysqli_fetch_assoc($reponse);
+      
       echo $donnee['mot_passe'];
 
       if ($donnee['mot_passe'] == $newvalue) // La nouvelle valeur est la même que l'ancienne
@@ -182,7 +194,10 @@
           WHERE id_utilisateur = '".$id_utilisateur."'";
 
           echo $update_requete;
-         mysqli_query($mysqli, $update_requete);
+          $reponse = mysqli_query($mysqli, $update_requete);
+
+         // Libération de la mémoire
+         mysqli_free_result($reponse);
 
          // Deconnexion à la base de donnée
          disconnect_db($mysqli);
@@ -190,5 +205,36 @@
          return 1;
       }
 
+   }
+
+   ////////////////////////////////////////////////////////////////////////////////////
+   function get_volData($id_utilisateur)
+   {
+      // Protection contre les injections SQL
+      $id_utilisateur = htmlentities($id_utilisateur, ENT_QUOTES, "ISO-8859-1");
+
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+
+      $sql  = 'SELECT id_vol, id_avion, qualif, commentaires FROM `vol` WHERE id_utilisateur = '.$id_utilisateur.'';
+
+      $reponse = mysqli_query($mysqli, $sql);
+
+      // Mise en forme des données sous forme de sous tableaux associatifs
+      $tableau = array();
+
+
+      while ($donnee = mysqli_fetch_assoc($reponse))
+      {
+         array_push($tableau, $donnee);
+      }
+
+      // Libération de la mémoire
+      mysqli_free_result($reponse);
+
+      // Deconnexion à la base de donnée
+      disconnect_db($mysqli);
+
+      return $tableau;
    }
 ?>

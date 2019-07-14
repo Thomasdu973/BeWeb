@@ -33,7 +33,7 @@
                                 <li><a href="'.CHEMIN.'/pages/administration/gestion_des_aerodromes.php">Gestion des aérodromes</a></li>
                                 <li><a href="'.CHEMIN.'/pages/administration/gestion_des_avions.php">Gestion des avions</a></li>
                             </ul>
-                        </li>';
+                    </li>';
                     }
 
                     echo'<li><a href="'.CHEMIN.'/controller/deconnexion.php">Déconnexion</a></li>';

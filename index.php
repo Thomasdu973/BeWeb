@@ -181,6 +181,5 @@ session_start();
 			</section>
 
 		<?php require_once ("template/footer.php");?>
-		<script type="text/javascript" src="assets/js/improvement.js?<?php echo date(':i:s');?>"></script>
 	</body>
 </html>
