@@ -50,25 +50,28 @@
 
 				$tableau = get_VolData($_SESSION['id_utilisateur']);
 
+				
 				foreach ($tableau as $ligne)
 				{
-					$temp_etape = $etape[$ligne['id_vol']];
-					$etape[$ligne['id_vol']] = $temp_etape .";". $ligne['OACI_dep'] .";". $ligne['OACI_arr'];
-
-					$temp_forme_etape = $forme_etape[$ligne['id_vol']];
-					$forme_etape[$ligne['id_vol']] = $temp_forme_etape ."<p>". $ligne['OACI_dep'] ." - ". $ligne['OACI_arr'] . "</p>";
+					$etape[$ligne['id_vol']] .= ";". $ligne['OACI_dep'] .";". $ligne['OACI_arr'];
+					$date[$ligne['id_vol']] .= ";". $ligne['date_debut'] .";". $ligne['date_arr'];
+					$forme_etape[$ligne['id_vol']] = "<ul>". $forme_etape[$ligne['id_vol']] ."<li>". $ligne['OACI_dep'] ." - ". $ligne['OACI_arr'] ."</li>";
 				}
+				$forme_etape[$ligne['id_vol']] .= "</li>";
 
 				$last_id_vol = -1;
 
 				foreach ($tableau as $ligne)
 				{
 					$id_vol = $ligne['id_vol'];
+
 					if ($id_vol != $last_id_vol)
 					{
-						$date_depart_abs = strtotime($ligne['date_debut']);
+						$tableau_date = explode(";", $date[$id_vol]);
+
+						$date_depart_abs = strtotime($tableau_date[1]);
 						$date_depart = explode(" ", $ligne['date_debut']);
-						$date_arrivee_abs = strtotime($ligne['date_arr']);
+						$date_arrivee_abs = strtotime(end($tableau_date));
 						$diff = dateDiff($date_arrivee_abs, $date_depart_abs);
 
 						$tableau_aerodrome = explode(";", $etape[$id_vol]);
@@ -88,7 +91,7 @@
 						<tr id='.$vue_id_vol.'>
 							<td><a class="icon fa-times-circle"></a>'.$vue_id_vol.'</td>
 							<td>'.$vue_date_depart.'</td>
-							<td><p>Dep : '.$vue_aerodrome_depart.'</p><p> Arr : '.$vue_aerodrome_arrivee.'</p></td>
+							<td><ul><li>Dep : '.$vue_aerodrome_depart.'</li><li> Arr : '.$vue_aerodrome_arrivee.'</li></ul></td>
 							<td><a class="hdv" href="#" data-format="dd.mm.yyy">'.$vue_heure.'h'.$vue_minute.'</a></td>
 							<td>'.$vue_avion.'</td>
 							<td><a class="editable "href="#" id="etape">'.$vue_etape.'</a></td>

@@ -1,6 +1,5 @@
 $(document).ready(function()
 {
-    $.fn.editable.defaults.mode = 'inline';
     ////////////////////////////////////////////////////////////////////////////////////
     // Gestion du button Connexion
     $('#connect_button').on('mouseover', function()
@@ -27,29 +26,6 @@ $(document).ready(function()
 
     ////////////////////////////////////////////////////////////////////////////////////
     // Gestion de la modification d'une information d'une ligne de vol
-    $('.qualif').editable({
-        type:  'text',
-        pk:    1,
-        name:  'qualif',
-        url:   '../../controller/traitement_editable.php',  
-        title: 'Entrez une etape'
-     });
-
-     $('.hdv').editable({
-        type:  'date',
-        pk:    1,
-        name:  'hdv',
-        url:   '../../controller/traitement_editable.php',  
-        title: 'Entrez une etape'
-     });
-
-     $('#dob').editable({
-        type:  'date',
-        pk:    1,
-        name:  'dob',
-        url:   'post.php',  
-        title: 'Select Date of birth'
-     });
 
     ////////////////////////////////////////////////////////////////////////////////////
     // Gestion de la suppression d'une ligne de vol
