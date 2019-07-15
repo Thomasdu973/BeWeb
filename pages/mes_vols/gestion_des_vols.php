@@ -92,10 +92,10 @@
 							<td><a class="icon fa-times-circle"></a>'.$vue_id_vol.'</td>
 							<td>'.$vue_date_depart.'</td>
 							<td><ul><li>Dep : '.$vue_aerodrome_depart.'</li><li> Arr : '.$vue_aerodrome_arrivee.'</li></ul></td>
-							<td><a class="hdv" href="#" data-format="dd.mm.yyy">'.$vue_heure.'h'.$vue_minute.'</a></td>
+							<td>'.$vue_heure.'h'.$vue_minute.'</td>
 							<td>'.$vue_avion.'</td>
-							<td><a class="editable "href="#" id="etape">'.$vue_etape.'</a></td>
-							<td><a class="qualif" href="#">'.$vue_qualifications.'</a></td>
+							<td>'.$vue_etape.'</td>
+							<td>'.$vue_qualifications.'</td>
 							<td>'.$vue_remarques.'</td>
 						</tr>';
 
@@ -104,6 +104,7 @@
 				}
 						echo '</tbody>
 							</table>
+							<a href="#" id="username">superuser</a>
 					</div>
 				</section>';
 			}

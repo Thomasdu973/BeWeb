@@ -13,6 +13,9 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo CHEMIN; ?>/assets/css/main.css" />
+
+    <!-- CSS Bootstrap editable -->
+    <link href="<?php echo CHEMIN; ?>/assets/library/bootstrap3-editable-1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
     
     <!-- Logo -->
     <link rel="icon" type="image/png" href="<?php echo CHEMIN; ?>/images/logo.png" />

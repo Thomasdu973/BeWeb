@@ -27,6 +27,17 @@ $(document).ready(function()
     ////////////////////////////////////////////////////////////////////////////////////
     // Gestion de la modification d'une information d'une ligne de vol
 
+    //turn to inline mode
+    $.fn.editable.defaults.mode = 'inline';
+    
+    $('#username').editable(
+    {
+        type: 'text',
+        pk: 1,
+        url: '/post',
+        title: 'Enter username'
+    });
+
     ////////////////////////////////////////////////////////////////////////////////////
     // Gestion de la suppression d'une ligne de vol
     $('.icon').on('mouseover', function()
