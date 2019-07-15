@@ -41,7 +41,7 @@
 									<th data-field="id2" data-sortable="true" scope="col">Aérodromes</th>
 									<th data-field="id3" data-sortable="true" scope="col">Durée</th>
 									<th data-field="id4" data-sortable="true" scope="col">Avions</th>
-									<th data-field="id5" data-sortable="true" scope="col">Etapes</th>
+									<th data-field="id5" data-sortable="true" scope="col">&Eacute;tapes</th>
 									<th data-field="id6" data-sortable="true" scope="col">Qualifications</th>
 									<th data-field="id7" data-sortable="true" scope="col">Remarques</th>
 									</tr>
@@ -65,16 +65,16 @@
 						<td><a class="icon fa-times-circle"></a></td>
 						<td>'.$date_depart[0].'</td>
 						<td>Dep : '.$ligne['OACI_dep'].' Arr : '.$ligne['OACI_arr'].'</td>
-						<td>'.$diff['hour'].'h'.$diff['minute'].'</td>
+						<td><a class="hdv" href="#" data-format="dd.mm.yyy">'.$diff['hour'].'h'.$diff['minute'].'</a></td>
 						<td>'.$ligne['id_avion'].'</td>
-						<td>etapes</td>
-						<td>'.$ligne['qualif'].'</td>
+						<td><a class="editable "href="#" id="etape">Etape</a></td>
+						<td><a class="qualif" href="#">'.$ligne['qualif'].'</a></td>
 						<td>'.$ligne['commentaires'].'</td>
 					</tr>';
 				}
 						echo '</tbody>
-							</table>	
-							<a href="#" id="date" data-type="text" data-pk="1">awesome</a>
+							</table>
+							<a href="#" id="dob" data-format="dd.mm.yyyy">15.05.1984</a>
 					</div>
 				</section>';
 			}

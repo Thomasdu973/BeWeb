@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    include '../controller/utils.php';
+    include 'utils.php';
     
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];

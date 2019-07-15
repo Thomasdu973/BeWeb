@@ -13,7 +13,7 @@
    function connect_db()
    {
       $db_username = 'phpmyadmin';
-      $db_password = 'YES';
+      $db_password = 'admin';
       $db_name     = 'be_isesa18';
       $db_host     = 'localhost';
       $db = mysqli_connect($db_host, $db_username, $db_password, $db_name)
@@ -250,6 +250,54 @@
    
       }
 
+      ////////////////////////////////////////////////////////////////////////////////////
+      function update_routeData($champ, $newvalue, $id_vol, $OACI_dep, $OACI_arr)
+      {
+         // Protection contre les injections SQL
+         $champ = htmlentities($champ, ENT_QUOTES, "ISO-8859-1");
+         $newvalue = htmlentities($newvalue, ENT_QUOTES, "ISO-8859-1");
+         $id_vol = htmlentities($id_vol, ENT_QUOTES, "ISO-8859-1");
+         $OACI_dep = htmlentities($OACI_dep, ENT_QUOTES, "ISO-8859-1");
+         $OACI_arr = htmlentities($OACI_arr, ENT_QUOTES, "ISO-8859-1");
+   
+         // Coonexion à la base de donnée
+         $mysqli = connect_db();
+   
+         $check_requete = 
+         "SELECT ".$champ."
+            FROM route
+            WHERE id_vol = '".$id_vol."' AND OACI_dep = '".$OACI_dep."' AND OACI_arr = '".$OACI_arr."'";
+   
+         $reponse = mysqli_query($mysqli, $check_requete);
+         $donnee = mysqli_fetch_assoc($reponse);
+         
+         if ($donnee[$champ] == $newvalue) // La nouvelle valeur est la même que l'ancienne
+         {
+            // Deconnexion à la base de donnée
+            disconnect_db($mysqli);
+            return 0;
+         }
+   
+         else  // On peut mettre à jour cette nouvelle valeur
+         {
+            $update_requete = 
+            "UPDATE route
+               SET ".$champ." = '".$newvalue."'
+               WHERE id_vol = '".$id_vol."' AND OACI_dep = '".$OACI_dep."' AND OACI_arr = '".$OACI_arr."'";
+   
+               $reponse = mysqli_query($mysqli, $update_requete);
+   
+            // Libération de la mémoire
+            mysqli_free_result($reponse);
+   
+            // Deconnexion à la base de donnée
+            disconnect_db($mysqli);
+   
+            return 1;
+         }
+   
+      }
+
    ////////////////////////////////////////////////////////////////////////////////////
    function get_volData($id_utilisateur)
    {
@@ -258,7 +306,6 @@
 
       // Coonexion à la base de donnée
       $mysqli = connect_db();
-
 
       $sql  = 'SELECT DISTINCT * FROM `vol`
                JOIN route ON vol.id_vol=route.id_vol
@@ -294,9 +341,19 @@
    
       $tmp = floor( ($tmp - $retour['second']) /60 );
       $retour['minute'] = $tmp % 60;
+
+      if ($retour['minute'] == 0)
+      {
+         $retour['minute'] = '00';
+      }
    
       $tmp = floor( ($tmp - $retour['minute'])/60 );
       $retour['hour'] = $tmp % 24;
+
+      if ($retour['heure'] == 0)
+      {
+         $retour['heure'] = '00';
+      }
    
       $tmp = floor( ($tmp - $retour['hour'])  /24 );
       $retour['day'] = $tmp;

@@ -31,7 +31,6 @@
 </footer>
 
 <!-- Scripts -->
-<script src="<?php echo CHEMIN; ?>/assets/sass/libs/bootstrap3-editable/js/bootstrap-editable.js"></script>
 <script src="<?php echo CHEMIN; ?>/assets/js/jquery.min.js"></script>
 <script src="<?php echo CHEMIN; ?>/assets/js/browser.min.js"></script>
 <script src="<?php echo CHEMIN; ?>/assets/js/breakpoints.min.js"></script>
@@ -43,4 +42,5 @@
 <script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
 <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo CHEMIN; ?>/assets/js/improvement.js?<?php echo date(':i:s');?>"></script>
+<script src="<?php echo CHEMIN; ?>/assets/library/bootstrap3-editable-1.5.1/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 
