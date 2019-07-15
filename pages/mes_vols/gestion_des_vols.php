@@ -52,33 +52,64 @@
 
 				foreach ($tableau as $ligne)
 				{
-					// $date_depart = explode(" ", $ligne['date_debut']);
-					// $date_arrivee = explode(" ", $ligne['date_arr']);
+					$temp_etape = $etape[$ligne['id_vol']];
+					$etape[$ligne['id_vol']] = $temp_etape .";". $ligne['OACI_dep'] .";". $ligne['OACI_arr'];
 
-					$date_depart_abs = strtotime($ligne['date_debut']);
-					$date_depart = explode(" ", $ligne['date_debut']);
-					$date_arrivee_abs = strtotime($ligne['date_arr']);
-					$diff = dateDiff($date_arrivee_abs, $date_depart_abs);
+					$temp_forme_etape = $forme_etape[$ligne['id_vol']];
+					$forme_etape[$ligne['id_vol']] = $temp_forme_etape ."<p>". $ligne['OACI_dep'] ." - ". $ligne['OACI_arr'] . "</p>";
+				}
 
-					echo '
-					<tr id='.$ligne['id_vol'].'>
-						<td><a class="icon fa-times-circle"></a></td>
-						<td>'.$date_depart[0].'</td>
-						<td>Dep : '.$ligne['OACI_dep'].' Arr : '.$ligne['OACI_arr'].'</td>
-						<td><a class="hdv" href="#" data-format="dd.mm.yyy">'.$diff['hour'].'h'.$diff['minute'].'</a></td>
-						<td>'.$ligne['id_avion'].'</td>
-						<td><a class="editable "href="#" id="etape">Etape</a></td>
-						<td><a class="qualif" href="#">'.$ligne['qualif'].'</a></td>
-						<td>'.$ligne['commentaires'].'</td>
-					</tr>';
+				$last_id_vol = -1;
+
+				foreach ($tableau as $ligne)
+				{
+					$id_vol = $ligne['id_vol'];
+					if ($id_vol != $last_id_vol)
+					{
+						$date_depart_abs = strtotime($ligne['date_debut']);
+						$date_depart = explode(" ", $ligne['date_debut']);
+						$date_arrivee_abs = strtotime($ligne['date_arr']);
+						$diff = dateDiff($date_arrivee_abs, $date_depart_abs);
+
+						$tableau_aerodrome = explode(";", $etape[$id_vol]);
+
+						$vue_id_vol = $id_vol;
+						$vue_date_depart = $date_depart[0];
+						$vue_aerodrome_depart = $tableau_aerodrome[1];
+						$vue_aerodrome_arrivee = end($tableau_aerodrome);
+						$vue_heure = $diff['hour'];
+						$vue_minute = $diff['minute'];
+						$vue_avion = $ligne['id_avion'];
+						$vue_etape = $forme_etape[$ligne['id_vol']];
+						$vue_qualifications = $ligne['qualif'];
+						$vue_remarques = $ligne['commentaires'];
+						
+						echo '
+						<tr id='.$vue_id_vol.'>
+							<td><a class="icon fa-times-circle"></a>'.$vue_id_vol.'</td>
+							<td>'.$vue_date_depart.'</td>
+							<td><p>Dep : '.$vue_aerodrome_depart.'</p><p> Arr : '.$vue_aerodrome_arrivee.'</p></td>
+							<td><a class="hdv" href="#" data-format="dd.mm.yyy">'.$vue_heure.'h'.$vue_minute.'</a></td>
+							<td>'.$vue_avion.'</td>
+							<td><a class="editable "href="#" id="etape">'.$vue_etape.'</a></td>
+							<td><a class="qualif" href="#">'.$vue_qualifications.'</a></td>
+							<td>'.$vue_remarques.'</td>
+						</tr>';
+
+						$last_id_vol = $id_vol;
+					}
 				}
 						echo '</tbody>
 							</table>
-							<a href="#" id="dob" data-format="dd.mm.yyyy">15.05.1984</a>
 					</div>
 				</section>';
 			}
-			?>
+
+			else // Utilisateur déjà connecté
+			{
+				header('Location: ../../index.php');
+			}
+		?>
 
 		<?php require_once ("../../template/footer.php");?>
 	</body>

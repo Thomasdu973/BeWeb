@@ -307,9 +307,10 @@
       // Coonexion à la base de donnée
       $mysqli = connect_db();
 
-      $sql  = 'SELECT DISTINCT * FROM `vol`
-               JOIN route ON vol.id_vol=route.id_vol
-               WHERE id_utilisateur = '.$id_utilisateur.'';
+      $sql  = "SELECT DISTINCT * FROM `vol` 
+               JOIN route ON vol.id_vol=route.id_vol 
+               WHERE id_utilisateur = '".$id_utilisateur."'
+               ORDER BY vol.id_vol";
 
       $reponse = mysqli_query($mysqli, $sql);
 
@@ -330,6 +331,41 @@
 
       return $tableau;
    }
+
+      ////////////////////////////////////////////////////////////////////////////////////
+      function get_etape($id_utilisateur)
+      {
+         // Protection contre les injections SQL
+         $id_utilisateur = htmlentities($id_utilisateur, ENT_QUOTES, "ISO-8859-1");
+   
+         // Coonexion à la base de donnée
+         $mysqli = connect_db();
+         
+         $sql  = 'SELECT OACI_dep, OACI_arr, route.id_vol
+                  FROM route
+                  JOIN vol ON route.id_vol = vol.id_vol
+                  WHERE vol.id_utilisateur = '.$id_utilisateur.'';
+   
+         $reponse = mysqli_query($mysqli, $sql);
+   
+         // Mise en forme des données sous forme de sous tableaux associatifs
+         $tableau = array();
+   
+   
+         while ($donnee = mysqli_fetch_assoc($reponse))
+         {
+            array_push($tableau, $donnee);
+         }
+   
+         // Libération de la mémoire
+         mysqli_free_result($reponse);
+   
+         // Deconnexion à la base de donnée
+         disconnect_db($mysqli);
+   
+         return $tableau;
+      }
+   
 
    ////////////////////////////////////////////////////////////////////////////////////
    function dateDiff($date1, $date2){
