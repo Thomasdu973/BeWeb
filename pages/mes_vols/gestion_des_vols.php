@@ -58,7 +58,7 @@
 					$forme_etape[$ligne['id_vol']] = "<ul>". $forme_etape[$ligne['id_vol']] ."<li>". $ligne['OACI_dep'] ." - ". $ligne['OACI_arr'] ."</li>";
 				}
 				$forme_etape[$ligne['id_vol']] .= "</li>";
-
+				
 				$last_id_vol = -1;
 
 				foreach ($tableau as $ligne)
@@ -90,13 +90,13 @@
 						echo '
 						<tr id='.$vue_id_vol.'>
 							<td><a class="icon fa-times-circle"></a>'.$vue_id_vol.'</td>
-							<td>'.$vue_date_depart.'</td>
+							<td><a href="#" class="date_depart">'.$vue_date_depart.'</a></td>
 							<td><ul><li>Dep : '.$vue_aerodrome_depart.'</li><li> Arr : '.$vue_aerodrome_arrivee.'</li></ul></td>
 							<td>'.$vue_heure.'h'.$vue_minute.'</td>
 							<td>'.$vue_avion.'</td>
 							<td>'.$vue_etape.'</td>
 							<td>'.$vue_qualifications.'</td>
-							<td>'.$vue_remarques.'</td>
+							<td><a href="#" class="commentaires">'.$vue_remarques.'</a></td>
 						</tr>';
 
 						$last_id_vol = $id_vol;
@@ -104,7 +104,8 @@
 				}
 						echo '</tbody>
 							</table>
-							<a href="#" id="username">superuser</a>
+							<a href="#" class="date_depart">15/05/1984</a>
+							<p id="test">Hello</p>
 					</div>
 				</section>';
 			}

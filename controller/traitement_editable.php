@@ -3,8 +3,9 @@
 
     include 'utils.php';
     
-    $etape = $_POST['qualif'];
-    echo 'hello';
+    $value = $_POST['value'];
+    $pk = $_POST['pk'];
+    echo $value, $pk;
 
-    //update_volData('qualif', $etape, $id_vol);
+    // update_volData('qualif', $etape, $id_vol);
 ?>

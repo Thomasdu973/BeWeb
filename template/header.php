@@ -11,7 +11,7 @@
     <meta name="description" content=""/>
     <meta name="keywords" content="" />
 
-    <!-- CSS -->
+    <!-- CSS Template-->
     <link rel="stylesheet" href="<?php echo CHEMIN; ?>/assets/css/main.css" />
 
     <!-- CSS Bootstrap editable -->

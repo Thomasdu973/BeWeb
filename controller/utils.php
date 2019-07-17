@@ -30,7 +30,7 @@
    // Fermer la connexion à la base de donnée
    function disconnect_db($db)
    {
-      $db = mysqli_close();
+      mysqli_close($db);
    }
 
    ////////////////////////////////////////////////////////////////////////////////////

@@ -34,8 +34,78 @@ $(document).ready(function()
     {
         type: 'text',
         pk: 1,
-        url: '/post',
-        title: 'Enter username'
+        url: '../../controller/traitement_editable.php',
+        title: 'Enter username',
+
+        success: function(response, newValue) 
+        {
+            if(response.status == 'error') return response.msg; //msg will be shown in editable form
+            console.log(response);
+        }
+    });
+
+     $('.date_depart').editable(
+         {
+            type: 'date',
+            pk: 1,
+            url: '../../controller/traitement_editable.php',
+            title: 'Select date',
+            format: 'yyyy-mm-dd',    
+            viewformat: 'dd/mm/yyyy',    
+            datepicker: 
+            {
+                    weekStart: 1
+            },
+
+            success: function(response, newValue) 
+            {
+                if(response.status == 'error') return response.msg; //msg will be shown in editable form
+                console.log(response);
+            }
+        });
+
+    $('.commentaires').editable(
+        {
+            type: 'text',
+            params:function(params){
+                params.pk = 1;//$(this).parent().parent().attr('id');
+                return params.pk;
+             },
+            // pk: 1,
+            url: '../../controller/traitement_editable.php',
+            title: 'Enter comments',
+            rows: 10,
+
+            validate: function(value) {
+                if(value == '') return 'Entrez un commentaires!'; 
+            },
+
+            success: function(response, newValue) 
+            {
+                if(response.status == 'error') return response.msg; //msg will be shown in editable form
+                console.log(response);
+            }
+    });
+
+    $('#test').on("click", function()
+    {
+        $.ajax(
+            {
+                type: "POST",
+                dataType: 'html',
+                url: "../../controller/traitement_editable.php",
+                data: ""
+            })
+
+            .done(function(data)
+            {
+                $("#test").html(data);
+            })
+
+            .fail(function(retour)
+            {
+                console.log("Problème : " + retour);
+            });
     });
 
     ////////////////////////////////////////////////////////////////////////////////////
