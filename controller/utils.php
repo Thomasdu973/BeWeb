@@ -211,7 +211,7 @@
          $champ = htmlentities($champ, ENT_QUOTES, "ISO-8859-1");
          $newvalue = htmlentities($newvalue, ENT_QUOTES, "ISO-8859-1");
          $id_vol = htmlentities($id_vol, ENT_QUOTES, "ISO-8859-1");
-   
+         
          // Coonexion à la base de donnée
          $mysqli = connect_db();
    
@@ -299,6 +299,27 @@
       }
 
    ////////////////////////////////////////////////////////////////////////////////////
+   function insert_volData($id_utilisateur, $id_avion, $qualif, $commentaires)
+   {
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+
+      // Le nouvel utilisateur est actif mais doit modifier son mot de passe
+      $actif = 2;
+
+      $insert_requete = "INSERT INTO utilisateur (id_utilisateur, nom, prenom, email, mot_passe, statut, actif) 
+      VALUE ('".$id_utilisateur."','".$nom."','".$prenom."','".$email."','".$mot_passe."','".$statut."','".$actif."')";
+
+      $reponse = mysqli_query($mysqli, $insert_requete);
+
+      // Libération de la mémoire
+      mysqli_free_result($reponse);
+
+      // Deconnexion à la base de donnée
+      disconnect_db($mysqli);
+   }
+
+   ////////////////////////////////////////////////////////////////////////////////////
    function get_volData($id_utilisateur)
    {
       // Protection contre les injections SQL
@@ -332,41 +353,121 @@
       return $tableau;
    }
 
-      ////////////////////////////////////////////////////////////////////////////////////
-      function get_etape($id_utilisateur)
-      {
-         // Protection contre les injections SQL
-         $id_utilisateur = htmlentities($id_utilisateur, ENT_QUOTES, "ISO-8859-1");
-   
-         // Coonexion à la base de donnée
-         $mysqli = connect_db();
-         
-         $sql  = 'SELECT OACI_dep, OACI_arr, route.id_vol
-                  FROM route
-                  JOIN vol ON route.id_vol = vol.id_vol
-                  WHERE vol.id_utilisateur = '.$id_utilisateur.'';
-   
-         $reponse = mysqli_query($mysqli, $sql);
-   
-         // Mise en forme des données sous forme de sous tableaux associatifs
-         $tableau = array();
-   
-   
-         while ($donnee = mysqli_fetch_assoc($reponse))
-         {
-            array_push($tableau, $donnee);
-         }
-   
-         // Libération de la mémoire
-         mysqli_free_result($reponse);
-   
-         // Deconnexion à la base de donnée
-         disconnect_db($mysqli);
-   
-         return $tableau;
-      }
-   
+   ////////////////////////////////////////////////////////////////////////////////////
+   function get_etape($id_utilisateur)
+   {
+      // Protection contre les injections SQL
+      $id_utilisateur = htmlentities($id_utilisateur, ENT_QUOTES, "ISO-8859-1");
 
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+      
+      $sql  = 'SELECT OACI_dep, OACI_arr, route.id_vol
+               FROM route
+               JOIN vol ON route.id_vol = vol.id_vol
+               WHERE vol.id_utilisateur = '.$id_utilisateur.'';
+
+      $reponse = mysqli_query($mysqli, $sql);
+
+      // Mise en forme des données sous forme de sous tableaux associatifs
+      $tableau = array();
+
+
+      while ($donnee = mysqli_fetch_assoc($reponse))
+      {
+         array_push($tableau, $donnee);
+      }
+
+      // Libération de la mémoire
+      mysqli_free_result($reponse);
+
+      // Deconnexion à la base de donnée
+      disconnect_db($mysqli);
+
+      return $tableau;
+   }
+
+   ////////////////////////////////////////////////////////////////////////////////////
+   function get_avions()
+   {
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+      
+      $sql  = 'SELECT id_avion FROM `avions`';
+
+      $reponse = mysqli_query($mysqli, $sql);
+
+      // Mise en forme des données sous forme de sous tableaux associatifs
+      $tableau = array();
+
+      while ($donnee = mysqli_fetch_assoc($reponse))
+      {
+         array_push($tableau, $donnee);
+      }
+
+      // Libération de la mémoire
+      mysqli_free_result($reponse);
+
+      // Deconnexion à la base de donnée
+      disconnect_db($mysqli);
+
+      return $tableau;
+   }
+
+   ////////////////////////////////////////////////////////////////////////////////////
+   function get_aerodromeData()
+   {
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+      
+      $sql  = 'SELECT * FROM `aerodrome` ORDER BY OACI';
+
+      $reponse = mysqli_query($mysqli, $sql);
+
+      // Mise en forme des données sous forme de sous tableaux associatifs
+      $tableau = array();
+
+      while ($donnee = mysqli_fetch_assoc($reponse))
+      {
+         array_push($tableau, $donnee);
+      }
+
+      // Libération de la mémoire
+      mysqli_free_result($reponse);
+
+      // Deconnexion à la base de donnée
+      disconnect_db($mysqli);
+
+      return $tableau;
+   }
+
+   ////////////////////////////////////////////////////////////////////////////////////
+   function get_avionsData()
+   {
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+      
+      $sql  = 'SELECT * FROM avions JOIN compagnie ON avions.id_compagnie = compagnie.id_compagnie';
+
+      $reponse = mysqli_query($mysqli, $sql);
+
+      // Mise en forme des données sous forme de sous tableaux associatifs
+      $tableau = array();
+
+      while ($donnee = mysqli_fetch_assoc($reponse))
+      {
+         array_push($tableau, $donnee);
+      }
+
+      // Libération de la mémoire
+      mysqli_free_result($reponse);
+
+      // Deconnexion à la base de donnée
+      disconnect_db($mysqli);
+
+      return $tableau;
+   }
+   
    ////////////////////////////////////////////////////////////////////////////////////
    function dateDiff($date1, $date2){
       $diff = abs($date1 - $date2); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative

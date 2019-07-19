@@ -25,59 +25,57 @@ $(document).ready(function()
     });
 
     ////////////////////////////////////////////////////////////////////////////////////
+    // Gestion du button Inscription
+    $('#add_flight_button').on('mouseover', function()
+    {
+        $('#add_flight_button').attr('value', 'J\'ajoute mon vol');
+    });
+
+    $('#add_flight_button').on('mouseout', function()
+    {
+        $('#add_flight_button').attr('value', 'Inscription');
+    });
+
+    ////////////////////////////////////////////////////////////////////////////////////
     // Gestion de la modification d'une information d'une ligne de vol
 
     //turn to inline mode
     $.fn.editable.defaults.mode = 'inline';
-    
-    $('#username').editable(
-    {
-        type: 'text',
-        pk: 1,
-        url: '../../controller/traitement_editable.php',
-        title: 'Enter username',
 
-        success: function(response, newValue) 
+    // // Gestion des dates
+    //  $('.date_depart').editable(
+    //      {
+    //         type: 'date',
+    //         pk: 1,
+    //         url: '../../controller/traitement_editable.php',
+    //         title: 'Select date',
+    //         format: 'yyyy-mm-dd',    
+    //         viewformat: 'dd/mm/yyyy',    
+    //         datepicker: 
+    //         {
+    //                 weekStart: 1
+    //         },
+
+    //         success: function(response, newValue) 
+    //         {
+    //             if(response.status == 'error') return response.msg; //msg will be shown in editable form
+    //             console.log(response);
+    //         }
+    //     });
+
+
+    // Gestion des champs textes
+    $('.text_area').editable(
         {
-            if(response.status == 'error') return response.msg; //msg will be shown in editable form
-            console.log(response);
-        }
-    });
-
-     $('.date_depart').editable(
-         {
-            type: 'date',
-            pk: 1,
-            url: '../../controller/traitement_editable.php',
-            title: 'Select date',
-            format: 'yyyy-mm-dd',    
-            viewformat: 'dd/mm/yyyy',    
-            datepicker: 
-            {
-                    weekStart: 1
-            },
-
-            success: function(response, newValue) 
-            {
-                if(response.status == 'error') return response.msg; //msg will be shown in editable form
-                console.log(response);
-            }
-        });
-
-    $('.commentaires').editable(
-        {
+            name: "",
             type: 'text',
-            params:function(params){
-                params.pk = 1;//$(this).parent().parent().attr('id');
-                return params.pk;
-             },
-            // pk: 1,
+            pk: 1,
             url: '../../controller/traitement_editable.php',
             title: 'Enter comments',
             rows: 10,
 
             validate: function(value) {
-                if(value == '') return 'Entrez un commentaires!'; 
+                if(value == '') return 'Ce champ est requis'; 
             },
 
             success: function(response, newValue) 
@@ -87,29 +85,64 @@ $(document).ready(function()
             }
     });
 
-    $('#test').on("click", function()
+    //Gestion des champs de selection
+    $('.id_avion').editable(
     {
-        $.ajax(
-            {
-                type: "POST",
-                dataType: 'html',
-                url: "../../controller/traitement_editable.php",
-                data: ""
+        type: 'select',
+        pk: 1,
+        url: "/post",
+        title: "Select status",
+        value: 2,
+        source: function getSource() 
+        {
+            var url = "../../controller/traitement_editable.php";
+            $.ajax({
+                type:  'GET',
+                async: true,
+                url:   url,
+                dataType: "json"
             })
 
             .done(function(data)
             {
-                $("#test").html(data);
-            })
-
-            .fail(function(retour)
-            {
-                console.log("Problème : " + retour);
+                callb(data);
             });
+        },
+
+        // success: function(response, newValue) 
+        // {
+        //     if(response.status == 'error') return response.msg; //msg will be shown in editable form
+        //     console.log(response);
+        // }
     });
+
+    // $('#test').on("click", function()
+    // {
+    //     $.ajax(
+    //         {
+    //             type: "POST",
+    //             dataType: 'html',
+    //             url: "../../controller/traitement_editable.php",
+    //             data: ""
+    //         })
+
+    //         .done(function(data)
+    //         {
+    //             $("#test").html(data);
+    //         })
+
+    //         .fail(function(retour)
+    //         {
+    //             console.log("Problème : " + retour);
+    //         });
+    // });
 
     ////////////////////////////////////////////////////////////////////////////////////
     // Gestion de la suppression d'une ligne de vol
+    $('.icon').blur(function (event) {
+        setTimeout(function () { $(".icon").focus(); }, 20);
+    });
+
     $('.icon').on('mouseover', function()
     {
         $(this).attr('class', 'icon fa-times');

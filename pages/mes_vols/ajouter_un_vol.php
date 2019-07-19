@@ -10,107 +10,118 @@
 <html>
 
 	<?php
-	require_once ("../../data/config.php");
-	require_once ("../../template/header.php");
+		require_once ("../../data/config.php");
+		require_once ("../../template/header.php");
+		include '../../controller/utils.php';
 	?>
 
 	<body class="is-preload">
 		<?php require_once ("../../template/menu.php");?>
-		<!-- Heading -->
-		<div id="heading" >
-			<h1>Ajouter un vol</h1>
-		</div>
-		<form method="post" action="">
-
-			<p>
-				<label for="avions">Avions utilisé</label><br />
-				<?php
-					$req="SELECT type_avion FROM avions";
-					$res=mysql_query($req) or die("erreur dans la requête $req");
-					<select size='1' name='avion' id='avion'>;
-					while ($avion=mysql_fetch_array($res))
-					{ 
-						for ($i=0;$i<count($avion);$i++)
-						<option value='$avion[$i]'>$avion[$i]</option>;
-					}
-					echo </select>;
-	
-				?>	
-			
-			</p>
-			<p>
-				<label for="aerodrome">Aérodrome départ</label><br />
-				<?php
-					$req="SELECT OACI FROM aerodrome";
-					$res=mysql_query($req) or die("erreur dans la requête $req");
-					<select size='1' name='aerodrome' id='aerodrome'>;
-					while ($aerodrome=mysql_fetch_array($res))
-					{ 
-						for ($i=0;$i<count($aerodrome);$i++)
-						<option value='$aerodrome[$i]'>$aerodrome[$i]</option>;
-					}
-					echo </select>;
-	
-				?>	
-			</p>
-   			<p><input type="date" name="date de départ"/></p>
-
-			<p>
-			<?php
-					<label for="aerodrome">Aérodrome arrivé</label><br />
-					$req="SELECT OACI FROM aerodrome";
-					$res=mysql_query($req) or die("erreur dans la requête $req");
-					<select size='1' name='aerodrome' id='aerodrome'>;
-					while ($aerodrome=mysql_fetch_array($res))
-					{ 
-						for ($i=0;$i<count($aerodrome);$i++)
-						<option value='$aerodrome[$i]'>$aerodrome[$i]</option>;
-					}
-					echo </select>;
-	
-			?>
-		
-			</p>
-			<p><input type="date" name="date de arrivé" /></p>
-			<p>
-			<?php 
-					<label for="aerodrome">Aérodrome intermédiaire</label><br />
-
-					$req="SELECT OACI FROM aerodrome";
-					$res=mysql_query($req) or die("erreur dans la requête $req");
-					<select size='1' name='aerodrome' id='aerodrome'>;
-					while ($aerodrome=mysql_fetch_array($res))
-					{ 
-						for ($i=0;$i<count($aerodrome);$i++)
-						<option value='$aerodrome[$i]'>$aerodrome[$i]</option>;
-					}
-					echo </select>;
-					
-	
-			?>
-			<input type="date" name="date de départ"/>
-			<input type="date" name="date d'arrivée"/>
-			</p>
-			<input type="text" name="Qualification" id="pseudo" />
-			<input type="text" name="Commentaires" />
-	
-		</form>
-		<!-- Main -->
-		<section id="main" class="wrapper">
-			<div class="inner">
-				<div class="content">
-					<header>
-						<h2>Feugiat consequat</h2>
-					</header>
-					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
-					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
-					<hr />
-					<h3>Magna odio tempus commodo</h3>
-					<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor. Ante commodo blandit adipiscing integer semper orci eget. Faucibus commodo adipiscing mi eu nullam accumsan morbi arcu ornare odio mi adipiscing nascetur lacus ac interdum morbi accumsan vis mi accumsan ac praesent.</p>
-					<p>Felis sagittis eget tempus primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus lorem ipsum dolor sit amet nullam.</p>
+		<?php
+			if (isset($_SESSION['id_utilisateur']))
+			{
+				echo '<!-- Heading -->
+				<div id="heading" >
+					<h1>Ajouter un vol</h1>
 				</div>
-			</div>
-		</section>
+
+				<section id="main" class="wrapper">
+					<div class="inner">
+						<div class="content">
+
+						<div class="col">
+							<form method="post" action="../../controller/traitement_ajout_vol.php">
+								<div class="row gtr-uniform">
+									<div class="col-8 col-7-xsmall">
+										<select name="id_avion" id="category" required>
+											<option value="">- Avion -</option>';
+											$tableau = get_avionsData();
+											
+											foreach ($tableau as $ligne)
+											{
+												echo'
+												<option value='.$ligne['id_avion'].'>'.$ligne['id_avion'].' -- '.$ligne['type_avion'].'</option>';
+											}
+									echo'
+										</select>
+									</div>
+
+									<div class="col-8 col-7-xsmall">
+										<select name="OACI_dep" id="category" required>
+											<option value="">- Aérodrome de départ -</option>';
+											$tableau = get_aerodromeData();
+											
+											foreach ($tableau as $ligne)
+											{
+												echo'
+												<option value='.$ligne['OACI'].'>'.$ligne['OACI'].' -- '.$ligne['nom_ad'].'</option>';
+											}
+									echo'
+										</select>
+									</div>
+
+									<div class="col-8 col-12-xsmall">
+										<input type="date" name="date_debut" id="prenom" value="" placeholder="Heure de départ" required/>
+									</div>
+
+									<div class="col-8 col-7-xsmall">
+										<select name="OACI_arr" id="category" required>
+											<option value="">- Aérodrome d\'arrivée -</option>';
+											$tableau = get_aerodromeData();
+											
+											foreach ($tableau as $ligne)
+											{
+												echo'
+												<option value='.$ligne['OACI'].'>'.$ligne['OACI'].' -- '.$ligne['nom_ad'].'</option>';
+											}
+									echo'
+										</select>
+									</div>
+
+									<div class="col-8 col-12-xsmall">
+										<input type="date" name="date_arr" id="prenom" value="" placeholder="Heure d\'arrivée" required/>
+									</div>
+
+									<div class="col-8 col-7-xsmall">
+										<select name="OACI_int" id="category">
+											<option value="">- Aérodrome intermédiaire -</option>';
+											$tableau = get_aerodromeData();
+											
+											foreach ($tableau as $ligne)
+											{
+												echo'
+												<option value='.$ligne['OACI'].'>'.$ligne['OACI'].' -- '.$ligne['nom_ad'].'</option>';
+											}
+									echo'
+										</select>
+									</div>
+
+									<div class="col-8 col-12-xsmall">
+										<input type="text" name="qualif" id="prenom" value="" placeholder="Qualification"/>
+									</div>
+
+									<div class="col-8 col-12-xsmall">
+										<input type="text" name="commentaires" id="prenom" value="" placeholder="Commentaires" required/>
+									</div>
+
+									<!-- Break -->
+									<div class="col-8">
+										<ul class="actions fit">
+											<li><input id="add_flight_button" type="submit" value="Ajouter un vol" class="button primary fit" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</section>';
+			}
+
+			else // Utilisateur non connecté
+			{
+				header('Location: ../../index.php');
+			}
+		?>
 
 		<?php require_once ("../../template/footer.php");?>
 	</body>

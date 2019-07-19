@@ -3,9 +3,15 @@
 
     include 'utils.php';
     
+    $champ = $_POST['name'];
     $value = $_POST['value'];
     $pk = $_POST['pk'];
-    echo $value, $pk;
 
-    // update_volData('qualif', $etape, $id_vol);
+
+    echo $champ, $value, $pk;
+
+    update_volData($champ, $value, $pk);
+
+
+    // echo ('[{value: 1, text: "text1"}, {value: 2, text: "text2"}]');
 ?>
