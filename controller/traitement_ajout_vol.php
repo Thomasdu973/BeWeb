@@ -11,10 +11,25 @@
     $OACI_arr = $_POST['OACI_arr'];
     $date_arr = $_POST['date_arr'];
 
-    $OACI_int = $_POST['OACI_int'];
-
     $qualif = $_POST['qualif'];
     $commentaires = $_POST['commentaires'];
+
+    $id_vol = insert_volData($_SESSION['id_utilisateur'], $id_avion, $qualif, $commentaires);
+
+    if ($_POST['OACI_int'] != "")
+    {
+        // Première ligne
+        $OACI_int = $_POST['OACI_int'];
+        insert_routeData($OACI_dep, $OACI_int, $date_debut, $date_arr, $id_vol);
+
+        // Première ligne
+        insert_routeData($OACI_int, $OACI_arr, $date_debut, $date_arr, $id_vol);
+    }
+
+    else
+    {
+        insert_routeData($OACI_dep, $OACI_arr, $date_debut, $date_arr, $id_vol);
+    }
 
     echo '<p>'.$id_avion.'</p>';
 
@@ -29,13 +44,9 @@
     echo '<p>'.$qualif.'</p>';
     echo '<p>'.$commentaires.'</p>';
 
-    // if($verif == 0) // L'email est déjà utilisé
-    // {
-    //     header('Location: ../pages/inscription.php?erreur');
-    // } 
-    
-    // else if ($verif == 1)
-    // {
-    //     header('Location: ../pages/connexion.php');
-    // }
+    echo $id_vol;
+
+    echo '<p></p>';
+
+    header('Location: ../pages/mes_vols/ajouter_un_vol.php?ajoute');
 ?>

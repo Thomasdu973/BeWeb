@@ -32,7 +32,7 @@
 							<header>
 								<h2>Tableau de vols</h2>
 							</header>
-							<table class="table" data-toggle="table" data-search="true" data-pagination="true" data-page-size="2">
+							<table class="table" data-toggle="table" data-search="true" data-pagination="true" data-page-size="10">
 
 								<thead class="thead-dark">
 									<tr>

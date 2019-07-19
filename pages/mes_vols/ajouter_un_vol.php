@@ -24,11 +24,15 @@
 				<div id="heading" >
 					<h1>Ajouter un vol</h1>
 				</div>
-
 				<section id="main" class="wrapper">
 					<div class="inner">
-						<div class="content">
+						<div class="content">';
+						if (isset($_GET['ajoute']))
+						{
+							echo '<p>Votre vol a bien été ajouté</p>';
+						}
 
+						echo'
 						<div class="col">
 							<form method="post" action="../../controller/traitement_ajout_vol.php">
 								<div class="row gtr-uniform">
@@ -61,7 +65,7 @@
 									</div>
 
 									<div class="col-8 col-12-xsmall">
-										<input type="date" name="date_debut" id="prenom" value="" placeholder="Heure de départ" required/>
+										<input type="text" name="date_debut" id="prenom" value="" placeholder="Heure de départ" required/>
 									</div>
 
 									<div class="col-8 col-7-xsmall">
@@ -79,7 +83,7 @@
 									</div>
 
 									<div class="col-8 col-12-xsmall">
-										<input type="date" name="date_arr" id="prenom" value="" placeholder="Heure d\'arrivée" required/>
+										<input type="text" name="date_arr" id="prenom" value="" placeholder="Heure d\'arrivée" required/>
 									</div>
 
 									<div class="col-8 col-7-xsmall">

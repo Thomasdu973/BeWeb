@@ -304,20 +304,53 @@
       // Coonexion à la base de donnée
       $mysqli = connect_db();
 
-      // Le nouvel utilisateur est actif mais doit modifier son mot de passe
-      $actif = 2;
-
-      $insert_requete = "INSERT INTO utilisateur (id_utilisateur, nom, prenom, email, mot_passe, statut, actif) 
-      VALUE ('".$id_utilisateur."','".$nom."','".$prenom."','".$email."','".$mot_passe."','".$statut."','".$actif."')";
+      $insert_requete = "INSERT INTO vol (id_utilisateur, id_avion, qualif, commentaires) 
+      VALUE ('".$id_utilisateur."','".$id_avion."','".$qualif."','".$commentaires."')";
 
       $reponse = mysqli_query($mysqli, $insert_requete);
+
+      // Récupération de l'id_vol généré
+
+      $sql  = 'SELECT MAX(id_vol) AS las_id_vol FROM `vol`';
+
+      $reponse = mysqli_query($mysqli, $sql);
+
+      $donnee = mysqli_fetch_assoc($reponse);
 
       // Libération de la mémoire
       mysqli_free_result($reponse);
 
       // Deconnexion à la base de donnée
       disconnect_db($mysqli);
+
+      return $donnee['las_id_vol'];
    }
+
+      ////////////////////////////////////////////////////////////////////////////////////
+      function insert_routeData($OACI_dep, $OACI_arr, $date_debut, $date_arr, $id_vol)
+      {
+         echo '<p>'.$OACI_dep.'</p>';
+         echo '<p>'.$date_debut.'</p>';
+
+         echo '<p>'.$OACI_arr.'</p>';
+         echo '<p>'.$date_arr.'</p>';
+
+         echo '<p>'.$id_vol.'</p>';
+
+         // Coonexion à la base de donnée
+         $mysqli = connect_db();
+         
+         $insert_requete = "INSERT INTO route (OACI_dep, OACI_arr, date_debut, date_arr, id_vol) 
+         VALUE ('".$OACI_dep."','".$OACI_arr."','".$date_debut."','".$date_arr."', '".$id_vol."')";
+   
+         $reponse = mysqli_query($mysqli, $insert_requete);
+   
+         // Libération de la mémoire
+         mysqli_free_result($reponse);
+   
+         // Deconnexion à la base de donnée
+         disconnect_db($mysqli);
+      }
 
    ////////////////////////////////////////////////////////////////////////////////////
    function get_volData($id_utilisateur)
