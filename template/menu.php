@@ -20,6 +20,7 @@
                         <ul>
                             <li><a href="'.CHEMIN.'/pages/mes_vols/ajouter_un_vol.php">Ajouter un vol</a></li>
                             <li><a href="'.CHEMIN.'/pages/mes_vols/gestion_des_vols.php">Gestion des vols</a></li>
+                            <li><a href="'.CHEMIN.'/pages/mes_vols/statistiques.php">Statistiques</a></li>
                         </ul>
                     </li>';
                     
@@ -28,7 +29,6 @@
                     echo'
                     <li>Administration
                             <ul>
-                                <li><a href="'.CHEMIN.'/pages/administration/statistiques.php">Statistiques</a></li>
                                 <li><a href="'.CHEMIN.'/pages/administration/gestion_des_compagnies.php">Gestion des compagnies</a></li>
                                 <li><a href="'.CHEMIN.'/pages/administration/gestion_des_aerodromes.php">Gestion des aérodromes</a></li>
                                 <li><a href="'.CHEMIN.'/pages/administration/gestion_des_avions.php">Gestion des avions</a></li>

@@ -364,7 +364,7 @@
       $sql  = "SELECT DISTINCT * FROM `vol` 
                JOIN route ON vol.id_vol=route.id_vol 
                WHERE id_utilisateur = '".$id_utilisateur."'
-               ORDER BY vol.id_vol";
+               ORDER BY route.id_vol DESC, route.date_arr ASC";
 
       $reponse = mysqli_query($mysqli, $sql);
 
@@ -502,7 +502,8 @@
    }
    
    ////////////////////////////////////////////////////////////////////////////////////
-   function dateDiff($date1, $date2){
+   function dateDiff($date1, $date2)
+   {
       $diff = abs($date1 - $date2); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
       $retour = array();
    
@@ -527,7 +528,66 @@
    
       $tmp = floor( ($tmp - $retour['hour'])  /24 );
       $retour['day'] = $tmp;
-   
+
       return $retour;
-  }
+   }
+
+   function calcul_heures($id_utilisateur, $date_debut_intervalle, $date_fin_intervalle)
+   {
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+
+      $sql  = 'SELECT route.date_debut, route.date_arr
+               FROM route
+               JOIN vol ON route.id_vol = vol.id_vol
+               WHERE vol.id_utilisateur = '.$id_utilisateur.' AND date_debut >= "'.$date_debut_intervalle.'" AND date_arr <= "'.$date_fin_intervalle.'"
+               ORDER BY date_debut';
+
+      $reponse = mysqli_query($mysqli, $sql);
+
+      // Mise en forme des données sous forme de sous tableaux associatifs
+      $tableau = array();
+      $indice_jour = 0;
+
+      while ($donnee = mysqli_fetch_assoc($reponse))
+      {
+         $date_heure_depart = explode(" ", $donnee['date_debut']);
+         $date_heure_arrivee = explode(" ", $donnee['date_arr']);
+
+         $date_depart = $date_heure_depart[0];
+         $date_arrivee = $date_heure_arrivee[0];
+
+         $heure_depart = strtotime($date_heure_depart[1]);
+         $heure_arrivee = strtotime($date_heure_arrivee[1]);
+
+         $diff = dateDiff($heure_arrivee, $heure_depart);
+
+         $tableau[$date_depart] += $diff['hour'];
+      }
+
+      $taille = count($tableau);
+      $tableau_keys = array_keys($tableau);
+      $tableau_formate = array();
+
+      foreach ($tableau as $key => $value)
+      {
+         $ligne = array
+         (
+            jour=>$key, vol=>$value
+         );
+
+         array_push($tableau_formate, $ligne);
+       }
+
+      //  print_r($tableau_formate);
+
+
+      // Libération de la mémoire
+      mysqli_free_result($reponse);
+
+      // Deconnexion à la base de donnée
+      disconnect_db($mysqli);
+
+      return $tableau_formate;
+   }
 ?>

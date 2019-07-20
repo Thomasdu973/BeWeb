@@ -20,9 +20,10 @@
     {
         // Première ligne
         $OACI_int = $_POST['OACI_int'];
-        insert_routeData($OACI_dep, $OACI_int, $date_debut, $date_arr, $id_vol);
+        $temp_date = $date_debut;
+        insert_routeData($OACI_dep, $OACI_int, $date_debut, $temp_date, $id_vol);
 
-        // Première ligne
+        // Seconde ligne ligne
         insert_routeData($OACI_int, $OACI_arr, $date_debut, $date_arr, $id_vol);
     }
 
