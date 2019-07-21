@@ -30,22 +30,23 @@
 					<div class="inner">
 						<div class="content">
 							<header>
-								<h2>Bienvenue</h2>
+								<h2>Bonjour '.$_SESSION['prenom'].' !</h2>
 							</header>
-							
-							<p>Id_utilisateur : '.$_SESSION['id_utilisateur'].'</p>
-							<p>Nom : '.$_SESSION['nom'].'</p>
-							<p>Prenom : '.$_SESSION['prenom'].'</p>
-							<p>Email : '.$_SESSION['email'].'</p>
-							<p>Statut : '.$_SESSION['statut'].'</p>
-							<p>Actif : '.$_SESSION['actif'].'</p>
-							
-							<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
-							<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac sed amet praesent. Nunc lacinia ante nunc ac gravida lorem ipsum dolor sit amet dolor feugiat consequat. </p>
-							<hr />
-							<h3>Magna odio tempus commodo</h3>
-							<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor. Ante commodo blandit adipiscing integer semper orci eget. Faucibus commodo adipiscing mi eu nullam accumsan morbi arcu ornare odio mi adipiscing nascetur lacus ac interdum morbi accumsan vis mi accumsan ac praesent.</p>
-							<p>Felis sagittis eget tempus primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus lorem ipsum dolor sit amet nullam.</p>
+
+							<header>
+								<h2><a href="mes_vols/ajouter_un_vol.php" class="icon fa-plane"><span class="label">Icon</span></a></h2>
+								<h3>Ajouter un vol</h3>
+							</header>
+
+							<header>
+								<h2><a href="mes_vols/gestion_des_vols.php" class="icon fa-vcard-o"><span class="label">Icon</span></a></h2>
+								<h3>Gestion des vols</h3>
+							</header>
+
+							<header>
+								<h2><a href="mes_vols/statistiques.php" class="icon fa-line-chart"><span class="label">Icon</span></a></h2>
+								<h3>Statistiques</h3>
+							</header>							
 						</div>
 					</div>
 				</section>';

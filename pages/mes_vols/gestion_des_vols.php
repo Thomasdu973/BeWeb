@@ -30,7 +30,7 @@
 					<div class="inner">
 						<div class="content">
 							<header>
-								<h2>Tableau de vols</h2>
+								<h2>Tableau des vols</h2>
 							</header>
 							<table class="table" data-toggle="table" data-search="true" data-pagination="true" data-page-size="10">
 
@@ -90,7 +90,7 @@
 						
 						echo '
 						<tr id='.$vue_id_vol.'>
-							<td><i class="icon fa-times-circle"></i>'.$vue_id_vol.'</td>
+							<td><i class="icon fa-times-circle"></i></td>
 							<td><a href="#" class="date_depart" data-pk='.$vue_id_vol.' data-name="date_depart">'.$vue_date_depart.'</a></td>
 							<td><ul><li>Dep : '.$vue_aerodrome_depart.'</li><li> Arr : '.$vue_aerodrome_arrivee.'</li></ul></td>
 							<td>'.$vue_heure.'h'.$vue_minute.'</td>

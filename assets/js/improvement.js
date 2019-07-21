@@ -28,6 +28,7 @@ $(document).ready(function()
         .done(function(data)
         {
             console.log("Supprimé :" + data);
+            window.location.reload() 
         })
 
         .fail(function(error)
