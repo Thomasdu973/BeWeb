@@ -590,4 +590,21 @@
 
       return $tableau_formate;
    }
+
+   function supprimer_vol($id_vol)
+   {
+      // Coonexion à la base de donnée
+      $mysqli = connect_db();
+
+      // Suppression de la table route
+      $sql  = 'DELETE FROM route WHERE id_vol = "'.$id_vol.'"';
+      mysqli_query($mysqli, $sql);
+
+      // Suppression de la table vol
+      $sql  = 'DELETE FROM vol WHERE id_vol = "'.$id_vol.'"';
+      mysqli_query($mysqli, $sql);
+
+      // Deconnexion à la base de donnée
+      disconnect_db($mysqli);
+   }
 ?>

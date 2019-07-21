@@ -14,6 +14,7 @@
 	require_once ("../../template/header.php");
 	include '../../controller/utils.php';
 	?>
+	
 	<link rel="stylesheet" href="../../assets/library/chart_gpl/codebase/chart.css">
 	<link rel="stylesheet" href="../../assets/css/stat.css">
 
@@ -63,11 +64,8 @@
 							<div id="chart1"></div>
 							
 						</div>
-					</div>';
-
-						$tab = calcul_heures($_SESSION['id_utilisateur'], '2019-01-01', '2020-01-01');
-						// print_r($tab);
-				echo '</section>';
+					</div>
+				</section>';
 			}
 
 			else // Utilisateur non connecté

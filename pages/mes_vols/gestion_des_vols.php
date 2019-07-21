@@ -90,7 +90,7 @@
 						
 						echo '
 						<tr id='.$vue_id_vol.'>
-							<td><a class="icon fa-times-circle"></a>'.$vue_id_vol.'</td>
+							<td><i class="icon fa-times-circle"></i>'.$vue_id_vol.'</td>
 							<td><a href="#" class="date_depart" data-pk='.$vue_id_vol.' data-name="date_depart">'.$vue_date_depart.'</a></td>
 							<td><ul><li>Dep : '.$vue_aerodrome_depart.'</li><li> Arr : '.$vue_aerodrome_arrivee.'</li></ul></td>
 							<td>'.$vue_heure.'h'.$vue_minute.'</td>
@@ -105,7 +105,6 @@
 				}
 						echo '</tbody>
 							</table>
-							<a href="#" id="status"">Slect</a>
 					</div>
 				</section>';
 			}
@@ -114,8 +113,9 @@
 			{
 				header('Location: ../../index.php');
 			}
+			
+			require_once ("../../template/footer.php");
 		?>
-
-		<?php require_once ("../../template/footer.php");?>
+		<!-- <script src="<?php echo CHEMIN; ?>/assets/js/delete.js?<?php echo date(':i:s');?>"></script> -->
 	</body>
 </html>
