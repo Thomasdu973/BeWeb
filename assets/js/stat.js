@@ -24,38 +24,22 @@ var config = {
 
 var chart = new dhx.Chart("chart1", config);
 
-// var heuresDeVol = [
-//     { jour: "`02", "vol": 72},
-//     { jour: "`03", "vol": 90},
-//     { jour: "`04", "vol": 81},
-//     { jour: "`05", "vol": 62},
-//     { jour: "`06", "vol": 68},
-//     { jour: "`07", "vol": 64},
-//     { jour: "`08", "vol": 30},
-//     { jour: "`09", "vol": 65},
-//     { jour: "`10", "vol": 50},
-//     { jour: "`11", "vol": 78}
-// ];
 
-chart.data.load('../../controller/traitement_stat.php');
-
-chart.data.parse(heuresDeVol);
-
-$('#test').on("click", function()
+$('form#stat').on("submit", function(event)
 {
+    event.preventDefault();
     $.ajax(
     {
         url: '../../controller/traitement_stat.php',
-        type: 'GET',
-        data: '',
+        type: 'POST',
+        data: $(this).serialize(),
         dataType: 'html'
     })
     
     .done(function(data)
     {
-        $('#test').html(data);
-        var heuresDeVol = data;
-        
+        console.log(data);
+        chart.data.parse(data);
     })
     
     .fail(function(error)

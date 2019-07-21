@@ -30,9 +30,39 @@
 				<section id="main" class="wrapper">
 					<div class="inner">
 						<div class="content">
-							<div id="chart1"></div>					
+						<div class="col">
+
+							<form id="stat">
+								<div class="row gtr-uniform">
+								<div class="col-3 col-12-xsmall">
+										<p>Début de l\'intervalle</p>
+									</div>
+
+									<div class="col-3 col-12-xsmall">
+										<p>Fin de l\'intervalle</p>
+									</div>
+
+									<div class="col-6 col-12-xsmall"></div>
+
+									<div class="col-3 col-12-xsmall">
+										<input type="date" name="date_debut_intervalle" value="Début de l\'intervalle" required/>
+									</div>
+
+									<div class="col-3 col-12-xsmall">
+										<input type="date" name="date_fin_intervalle" value="Fin de l\'intervalle" required/>
+									</div>
+									<!-- Break -->
+									<div class="col-6">
+										<ul class="actions fit">
+											<li><input type="submit" value="Mettre à jour l\'affichage" class="button primary fit" /></li>
+										</ul>
+									</div>
+								</div>
+							</form>
+
+							<div id="chart1"></div>
+							
 						</div>
-						<p id="test">Hello</p>
 					</div>';
 
 						$tab = calcul_heures($_SESSION['id_utilisateur'], '2019-01-01', '2020-01-01');
@@ -40,9 +70,9 @@
 				echo '</section>';
 			}
 
-			else
+			else // Utilisateur non connecté
 			{
-				header('Location : ../../index.php');
+				header('Location: ../../index.php');
 			}
 
 			require_once ("../../template/footer.php");
